@@ -23,17 +23,19 @@ return {
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      'onsails/lspkind.nvim',
 
       -- If you want to add a bunch of pre-configured snippets,
       --    you can use this plugin to help you. It even has snippets
       --    for various frameworks/libraries/etc. but you will have to
       --    set up the ones that are useful for you.
-      -- 'rafamadriz/friendly-snippets',
+      'rafamadriz/friendly-snippets',
     },
     config = function()
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
+      local lspkind = require 'lspkind'
       luasnip.config.setup {}
 
       cmp.setup {
@@ -43,7 +45,36 @@ return {
           end,
         },
         completion = { completeopt = 'menu,menuone,noinsert' },
-
+        formatting = {
+          format = lspkind.cmp_format {
+            mode = 'symbol', -- show only symbol annotations
+            maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+            -- can also be a function to dynamically calculate max width such as
+            -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
+            ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+            show_labelDetails = false, -- show labelDetails in menu. Disabled by default
+            symbol_map = { Codeium = '' },
+            experimental = { ghost_text = true },
+            -- The function below will be called before any actual modifications from lspkind
+            -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+            before = function(entry, vim_item)
+              return vim_item
+            end,
+          },
+        },
+        vim.api.nvim_set_hl(0, 'CmpItemKindCodeium', { fg = '#6CC644' }),
+        window = {
+          completion = cmp.config.window.bordered {
+            side_padding = 1,
+            scrollbar = false,
+            winhighlight = 'Normal:NormalFloat,CursorLine:Visual,Search:None',
+          },
+          documentation = cmp.config.window.bordered {
+            side_padding = 2,
+            winhighlight = 'Normal:NormalFloat,CursorLine:Visual,Search:None',
+            scrollbar = true,
+          },
+        },
         -- For an understanding of why these mappings were
         -- chosen, you will need to read `:help ins-completion`
         --
@@ -54,10 +85,9 @@ return {
           -- Select the [p]revious item
           ['<C-p>'] = cmp.mapping.select_prev_item(),
 
-          -- Accept ([y]es) the completion.
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
-          ['<tab>'] = cmp.mapping.confirm { select = true },
+          ['<Tab>'] = cmp.mapping.confirm { select = true },
 
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
@@ -84,6 +114,7 @@ return {
           end, { 'i', 's' }),
         },
         sources = {
+          { name = 'codeium' },
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
