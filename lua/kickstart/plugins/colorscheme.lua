@@ -9,12 +9,12 @@ return {
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       -- Load the colorscheme here
+      require('gruvbox').setup { transparent_mode = true }
       vim.cmd.colorscheme 'gruvbox'
 
       -- You can configure highlights by doing something like
       vim.cmd.hi 'Comment gui=none'
     end,
-    opts = { transparent_mode = true },
   },
 }
 -- vim: ts=2 sts=2 sw=2 et
