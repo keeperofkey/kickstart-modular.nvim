@@ -3,6 +3,7 @@
 [kickstart-modular](https://github.com/damn9000/kickstart-modular.nvim)
 # My Neovim Configuration
 Thank you, [T.J. Davis](https://www.youtube.com/@teej_dv) for creating the kickstart project!
+```
       ___         ___                               ___         ___         ___                                             
      /\__\       /\  \                             /\  \       /\  \       /\__\                                            
     /:/ _/_     /::\  \                           /::\  \      \:\  \     /:/ _/_                                           
@@ -44,4 +45,4 @@ Thank you, [T.J. Davis](https://www.youtube.com/@teej_dv) for creating the kicks
  \/__\:\  \:\  \      \:\/:/  /             \:\  \     \::/  /\/_/:/  /   \:\  \                                            
       \:\__\:\__\      \::/  /               \:\__\    /:/  /   /:/  /     \:\__\                                           
        \/__/\/__/       \/__/                 \/__/    \/__/    \/__/       \/__/                                           
-</div>
+```
