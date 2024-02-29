@@ -1,5 +1,17 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
+vim.keymap.set('n', '<leader>t', function()
+  require('nvterm.terminal').new 'horizontal'
+end, { expr = true, silent = true, desc = 'Open little[t]erminal in horizontal split' })
+vim.keymap.set('n', '<leader>T', function()
+  require('nvterm.terminal').new 'vertical'
+end, { expr = true, silent = true, desc = 'Open [T]erminal in vertical split' })
+
+-- Window split
+vim.keymap.set('n', '<leader>wl', '<C-w><C-v>', { desc = 'Open [W]indow in vertical split' })
+vim.keymap.set('n', '<leader>wj', '<C-w><C-s>', { desc = 'Open [W]indow in horizontal split' })
+
+-- Oil
 vim.keymap.set('n', '<leader>-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true

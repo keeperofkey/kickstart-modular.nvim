@@ -23,4 +23,22 @@ return {
       require('codeium').setup {}
     end,
   },
+  {
+    'NvChad/nvterm',
+    config = function()
+      require('nvterm').setup {
+        shell = '/usr/bin/fish',
+        terminals = {
+          horizontal = { split_ratio = 0.2 },
+          vertical = { split_ratio = 0.5 },
+        },
+      }
+      vim.keymap.set('n', '<leader>t', function()
+        require('nvterm.terminal').toggle 'horizontal'
+      end, { desc = 'Toggle little horizontal [t]erm' })
+      vim.keymap.set('n', '<leader>T', function()
+        require('nvterm.terminal').toggle 'vertical'
+      end, { desc = 'Toggle vertical [T]erm split' })
+    end,
+  },
 }

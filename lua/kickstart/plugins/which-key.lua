@@ -18,7 +18,13 @@ return {
     'folke/which-key.nvim',
     event = 'VeryLazy', -- Sets the loading event to 'VeryLazy'
     config = function() -- This is the function that runs, AFTER loading
-      require('which-key').setup()
+      require('which-key').setup {
+        icons = {
+          breadcrumb = '»', -- symbol used in the command line area that shows your active key combo
+          separator = '', -- symbol used between a key and it's label
+          group = '+', -- symbol prepended to a group
+        },
+      }
 
       -- Document existing key chains
       require('which-key').register {
