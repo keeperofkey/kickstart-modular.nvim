@@ -41,4 +41,63 @@ return {
       end, { desc = 'Toggle vertical [T]erm split' })
     end,
   },
+
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {
+      options = {
+        theme = 'gruvbox',
+        component_separators = { left = '>', right = '<' },
+        section_separators = { left = ' ', right = ' ' },
+      },
+      sections = {
+        lualine_a = { { 'mode', padding = { left = 2, right = 2 } } },
+        lualine_y = { 'location', 'progress' },
+        lualine_z = {
+          {
+            function()
+              return ' ' .. os.date '%R'
+            end,
+            padding = { left = 2, right = 2 },
+          },
+        },
+      },
+    },
+  },
+  {
+    'theprimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      local harpoon = require('harpoon').setup()
+      vim.keymap.set('n', '<leader>ha', function()
+        harpoon:list():append()
+      end, { desc = '[H]arpoon [a]ppend' })
+      vim.keymap.set('n', '<leader>hg', function()
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+      end, { desc = '[H]arpoon [g]ui' })
+
+      vim.keymap.set('n', '<leader>hh', function()
+        harpoon:list():select(1)
+      end, { desc = '[H]arpoon [h]ead' })
+      vim.keymap.set('n', '<leader>hj', function()
+        harpoon:list():select(2)
+      end, { desc = '[H]arpoon [j]ump' })
+      vim.keymap.set('n', '<leader>hk', function()
+        harpoon:list():select(3)
+      end, { desc = '[H]arpoon mm[k]ay' })
+      vim.keymap.set('n', '<leader>hl', function()
+        harpoon:list():select(4)
+      end, { desc = '[H]arpoon [l]ast' })
+
+      -- Toggle previous & next buffers stored within Harpoon list
+      vim.keymap.set('n', '<C-S-P>', function()
+        harpoon:list():prev()
+      end)
+      vim.keymap.set('n', '<C-S-N>', function()
+        harpoon:list():next()
+      end)
+    end,
+  },
 }
