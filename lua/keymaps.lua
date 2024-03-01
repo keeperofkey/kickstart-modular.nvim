@@ -1,5 +1,8 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
+-- SourceGraph
+vim.cmd [[nnoremap <space>ss <cmd>lua require('sg.extensions.telescope').fuzzy_search_results()<CR>]]
+--  terminal
 vim.keymap.set('n', '<leader>t', function()
   require('nvterm.terminal').new 'horizontal'
 end, { expr = true, silent = true, desc = 'Open little[t]erminal in horizontal split' })

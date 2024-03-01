@@ -3,6 +3,7 @@
 --
 -- See the kickstart.nvim README for more information
 return {
+  { 'folke/lazy.nvim', opts = { ui = { border = 'rounded' } } },
   {
     'stevearc/oil.nvim',
     opts = {
@@ -98,6 +99,22 @@ return {
       vim.keymap.set('n', '<C-S-N>', function()
         harpoon:list():next()
       end)
+    end,
+  },
+  {
+    'carlosrocha/chrome-remote.nvim',
+    config = function()
+      require('chrome-remote').setup { connection = { host = 'localhost', port = 9222 } }
+    end,
+  },
+  {
+    'sourcegraph/sg.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+    },
+    config = function()
+      require('sg').setup()
     end,
   },
 }
