@@ -14,6 +14,9 @@ end, { expr = true, silent = true, desc = 'Open [T]erminal in vertical split' })
 vim.keymap.set('n', '<leader>wl', '<C-w><C-v>', { desc = 'Open [W]indow in vertical split' })
 vim.keymap.set('n', '<leader>wj', '<C-w><C-s>', { desc = 'Open [W]indow in horizontal split' })
 
+-- Page movement
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Page down and center' })
+vim.keymap.set('n', '<C-d>', '<C-u>zz', { desc = 'Page up and center' })
 -- Oil
 vim.keymap.set('n', '<leader>-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 -- Set highlight on search, but clear on pressing <Esc> in normal mode

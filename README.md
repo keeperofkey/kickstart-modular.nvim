@@ -2,7 +2,7 @@
 - [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
 - [kickstart-modular](https://github.com/damn9000/kickstart-modular.nvim)
 # My Neovim Configuration
-Thank you, [T.J. Davis](https://www.youtube.com/@teej_dv) for creating the kickstart project!
+Thank you, [T.J. DevRies](https://www.youtube.com/@teej_dv) for creating the kickstart project!
 ```
 
 

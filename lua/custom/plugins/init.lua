@@ -3,7 +3,6 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-  { 'folke/lazy.nvim', opts = { ui = { border = 'rounded' } } },
   {
     'stevearc/oil.nvim',
     opts = {
@@ -101,11 +100,16 @@ return {
       end)
     end,
   },
+  -- {
+  --   'carlosrocha/chrome-remote.nvim',
+  --   config = function()
+  --     require('chrome-remote').setup { connection = { host = 'localhost', port = 9222 } }
+  --   end,
+  -- },
   {
-    'carlosrocha/chrome-remote.nvim',
-    config = function()
-      require('chrome-remote').setup { connection = { host = 'localhost', port = 9222 } }
-    end,
+    'm4xshen/hardtime.nvim',
+    dependencies = { 'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim' },
+    opts = {},
   },
   {
     'sourcegraph/sg.nvim',
