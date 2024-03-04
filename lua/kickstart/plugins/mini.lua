@@ -25,6 +25,8 @@ return {
       --   return '%2l:%-2v'
       -- end
 
+      require('mini.sessions').setup { autoread = true }
+
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,

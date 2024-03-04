@@ -20,6 +20,7 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
+    -- 'mxsdev/nvim-dap-vscode-js',
   },
   config = function()
     local dap = require 'dap'
@@ -39,6 +40,8 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        -- 'js-debug-adapter',
+        'python',
       },
     }
 
@@ -83,5 +86,112 @@ return {
 
     -- Install golang specific config
     require('dap-go').setup()
+    -- require('dap-vscode-js').setup {
+    --   -- node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
+    --   -- debugger_path = '~/.local/share/nvim/lazy/vscode-js-debug/src/dapDebugServer.ts',
+    --   debugger_path = '/home/d0/.local/share/nvim/lazy/vscode-js-debug',
+    --   -- debugger_cmd = { 'js-debug-adapter' }, -- Command to use to launch the debug server. Takes precedence over `node_path` and `debugger_path`.
+    --   adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost', 'chrome' }, -- which adapters to register in nvim-dap
+    --   -- log_file_path = "(stdpath cache)/dap_vscode_js.log" -- Path for file logging
+    --   -- log_file_level = false -- Logging level for output to file. Set to false to disable file logging.
+    --   -- log_console_level = vim.log.levels.ERROR -- Logging level for output to console. Set to false to disable console output.
+    -- }
+    --
+    -- for _, language in ipairs { 'typescript', 'javascript' } do
+    --   require('dap').configurations[language] = {
+    --     {
+    --       type = 'pwa-chrome',
+    --       request = 'launch',
+    --       name = 'Launch with localhost',
+    --       url = 'http://localhost:3000',
+    --     },
+    --     {
+    --       type = 'chrome',
+    --       request = 'launch',
+    --       name = 'Launch with chrome',
+    --       url = 'http://localhost:3000',
+    --     },
+    --     {
+    --       type = 'pwa-chrome',
+    --       request = 'attach',
+    --       name = 'Attach',
+    --       url = 'http://localhost:3000',
+    --       protocol = 'inspector',
+    --     },
+    --   }
+    -- end
+    -- require('dap').adapters['pwa-chrome'] = {
+    --   type = 'server',
+    --   port = 3000,
+    --   executable = { command = 'node', args = { os.getenv 'HOME' .. '/.local/share/nvim/mason/packages/js-debug-adapter/js-debug-adapter', 3000 } },
+    -- }
+    -- require('dap').configurations.javascript = {
+    --   {
+    --     type = 'chrome',
+    --     name = 'Attach',
+    --     request = 'attach',
+    --     url = 'http://localhost:3000',
+    --     webRoot = '${workspaceFolder}',
+    --     trace = true,
+    --   },
+    --   {
+    --     type = 'chrome',
+    --     name = 'Launch with localhost',
+    --     request = 'launch',
+    --     url = 'http://localhost:3000',
+    --     webRoot = '${workspaceFolder}',
+    --     trace = true,
+    --   },
+    -- }
+    -- dap.adapters.chrome = {
+    --   type = 'executable',
+    --   command = 'node',
+    --   args = { os.getenv 'HOME' .. '/.local/share/nvim/mason/packages/js-debug-adapter/js-debug-adapter' }, -- TODO adjust
+    -- }
+    --
+    -- dap.configurations.javascript = { -- change this to javascript if needed
+    --   {
+    --     type = 'chrome',
+    --     request = 'attach',
+    --     program = '${file}',
+    --     cwd = vim.fn.getcwd(),
+    --     sourceMaps = true,
+    --     protocol = 'inspector',
+    --     port = 9222,
+    --     webRoot = '${workspaceFolder}',
+    --   },
+    -- }
+    --
+    -- dap.configurations.typescript = { -- change to typescript if needed
+    --   {
+    --     type = 'chrome',
+    --     request = 'attach',
+    --     program = '${file}',
+    --     cwd = vim.fn.getcwd(),
+    --     sourceMaps = true,
+    --     protocol = 'inspector',
+    --     port = 9222,
+    --     webRoot = '${workspaceFolder}',
+    --   },
+    -- }
+    -- require('dap-vscode-js').setup {
+    --   debugger_path = '~/.local/share/nvim/mason/packages/js-debug-adapter/',
+    --   adapters = { 'pwa-chrome' },
+    -- }
+    --
+    -- for _, language in ipairs { 'typescript', 'javascript' } do
+    --   require('dap').configurations[language] = {
+    --     {
+    --       {
+    --         type = 'pwa-chrome',
+    --         request = 'attach',
+    --         name = 'Attach',
+    --         port = 9222,
+    --         url = 'localhost',
+    --         cwd = '${workspaceFolder}',
+    --       },
+    --     },
+    --   }
+    -- end
   end,
 }

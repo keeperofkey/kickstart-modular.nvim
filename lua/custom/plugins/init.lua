@@ -4,15 +4,28 @@
 -- See the kickstart.nvim README for more information
 return {
   {
-    'stevearc/oil.nvim',
-    opts = {
-      keymaps = {
-        ['<leader><leader>'] = 'actions.select',
-      },
-    },
-    -- Optional dependencies
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    'microsoft/vscode-js-debug',
+    opt = true,
+    run = 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out',
   },
+  {
+    'iamcco/markdown-preview.nvim',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    ft = { 'markdown' },
+    build = function()
+      vim.fn['mkdp#util#install']()
+    end,
+  },
+  -- {
+  --   'stevearc/oil.nvim',
+  --   opts = {
+  --     keymaps = {
+  --       ['<leader><leader>'] = 'actions.select',
+  --     },
+  --   },
+  --   -- Optional dependencies
+  --   dependencies = { 'nvim-tree/nvim-web-devicons' },
+  -- },
   {
     'Exafunction/codeium.nvim',
     dependencies = {
@@ -50,6 +63,14 @@ return {
         theme = 'gruvbox',
         component_separators = { left = '>', right = '<' },
         section_separators = { left = ' ', right = ' ' },
+      },
+      tabline = {
+        lualine_a = {},
+        lualine_b = { 'tabs' },
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = { 'windows' },
       },
       sections = {
         lualine_a = { { 'mode', padding = { left = 2, right = 2 } } },
@@ -106,11 +127,11 @@ return {
   --     require('chrome-remote').setup { connection = { host = 'localhost', port = 9222 } }
   --   end,
   -- },
-  {
-    'm4xshen/hardtime.nvim',
-    dependencies = { 'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim' },
-    opts = {},
-  },
+  -- {
+  --   'm4xshen/hardtime.nvim',
+  --   dependencies = { 'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim' },
+  --   opts = { disable_mouse = false, max_count = 5, allow_different_key = true },
+  -- },
   {
     'sourcegraph/sg.nvim',
     dependencies = {

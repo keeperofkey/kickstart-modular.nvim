@@ -1,5 +1,9 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
+--  Mini sessions
+vim.keymap.set('n', '<leader>m', function()
+  require('mini.sessions').select()
+end, { desc = 'Open [S]ession menu' })
 -- SourceGraph
 vim.cmd [[nnoremap <space>ss <cmd>lua require('sg.extensions.telescope').fuzzy_search_results()<CR>]]
 --  terminal
@@ -14,11 +18,22 @@ end, { expr = true, silent = true, desc = 'Open [T]erminal in vertical split' })
 vim.keymap.set('n', '<leader>wl', '<C-w><C-v>', { desc = 'Open [W]indow in vertical split' })
 vim.keymap.set('n', '<leader>wj', '<C-w><C-s>', { desc = 'Open [W]indow in horizontal split' })
 
+-- Window movement
+vim.keymap.set('n', '<leader>wL', '<C-w>L', { desc = 'Move [W]indow to the right' })
+vim.keymap.set('n', '<leader>wJ', '<C-w>J', { desc = 'Move [W]indow to the bottom' })
+
+-- Window resize
+vim.keymap.set('n', '<leader>we', '<C-w>=', { desc = '[W]indows [e]qual' })
+vim.keymap.set('n', '<leader>wi', '<C-w>+', { desc = '[W]indow [i]ncrease height' })
+vim.keymap.set('n', '<leader>wd', '<C-w>-', { desc = '[W]indow [d]ecrease height' })
+vim.keymap.set('n', '<leader>wI', '<C-w><', { desc = '[W]indow [I]crease right' })
+vim.keymap.set('n', '<leader>wD', '<C-w>>', { desc = '[W]indow [D]ecrease right' })
+
 -- Page movement
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Page down and center' })
-vim.keymap.set('n', '<C-d>', '<C-u>zz', { desc = 'Page up and center' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Page up and center' })
 -- Oil
-vim.keymap.set('n', '<leader>-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+-- vim.keymap.set('n', '<leader>-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -28,6 +43,11 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+-- Open Tab and move tabs
+vim.keymap.set('n', '<leader><leader><Tab>', '<CMD>tabnew<CR>', { desc = 'Open new [T]ab' })
+vim.keymap.set('n', '<leader>x', '<CMD>tabclose<CR>', { desc = '[x] Close current tab' })
+vim.keymap.set('n', '<leader><Tab>', '<CMD>tabnext<CR>', { desc = 'Move to next [Tab]' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
