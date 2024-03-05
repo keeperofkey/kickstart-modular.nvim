@@ -9,7 +9,7 @@ return {
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = { notification = { window = { blend = 100, border = 'rounded' } } } },
+      { 'j-hui/fidget.nvim', opts = { notification = { window = { winblend = 0, border = 'rounded', normal_hl = 'Normal' } } } },
     },
     config = function()
       -- Brief Aside: **What is LSP?**

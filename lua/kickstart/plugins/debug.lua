@@ -20,12 +20,12 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
+    'mfussenegger/nvim-dap-python',
     -- 'mxsdev/nvim-dap-vscode-js',
   },
   config = function()
     local dap = require 'dap'
     local dapui = require 'dapui'
-
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations
@@ -41,7 +41,6 @@ return {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
         -- 'js-debug-adapter',
-        'python',
       },
     }
 
@@ -86,6 +85,7 @@ return {
 
     -- Install golang specific config
     require('dap-go').setup()
+    require('dap-python').setup '~/.virtualenvs/debugpy/bin/python'
     -- require('dap-vscode-js').setup {
     --   -- node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
     --   -- debugger_path = '~/.local/share/nvim/lazy/vscode-js-debug/src/dapDebugServer.ts',

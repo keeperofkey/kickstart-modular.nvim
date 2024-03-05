@@ -3,16 +3,18 @@
 --  Mini sessions
 vim.keymap.set('n', '<leader>m', function()
   require('mini.sessions').select()
-end, { desc = 'Open [S]ession menu' })
+end, { desc = 'Open Session [m]enu' })
 -- SourceGraph
 vim.cmd [[nnoremap <space>ss <cmd>lua require('sg.extensions.telescope').fuzzy_search_results()<CR>]]
 --  terminal
 vim.keymap.set('n', '<leader>t', function()
+  vim.cmd [[lcd %:p:h]]
   require('nvterm.terminal').new 'horizontal'
-end, { expr = true, silent = true, desc = 'Open little[t]erminal in horizontal split' })
+end, { desc = 'Open [t]erminal in horizontal split' })
 vim.keymap.set('n', '<leader>T', function()
+  vim.cmd [[lcd %:p:h]]
   require('nvterm.terminal').new 'vertical'
-end, { expr = true, silent = true, desc = 'Open [T]erminal in vertical split' })
+end, { desc = 'Open [T]erminal in vertical split' })
 
 -- Window split
 vim.keymap.set('n', '<leader>wl', '<C-w><C-v>', { desc = 'Open [W]indow in vertical split' })

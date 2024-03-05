@@ -46,12 +46,6 @@ return {
           vertical = { split_ratio = 0.5 },
         },
       }
-      vim.keymap.set('n', '<leader>t', function()
-        require('nvterm.terminal').toggle 'horizontal'
-      end, { desc = 'Toggle little horizontal [t]erm' })
-      vim.keymap.set('n', '<leader>T', function()
-        require('nvterm.terminal').toggle 'vertical'
-      end, { desc = 'Toggle vertical [T]erm split' })
     end,
   },
 
@@ -62,7 +56,7 @@ return {
       options = {
         theme = 'gruvbox',
         component_separators = { left = '>', right = '<' },
-        section_separators = { left = ' ', right = ' ' },
+        section_separators = { left = '', right = '' },
       },
       tabline = {
         lualine_a = {},
@@ -73,14 +67,15 @@ return {
         lualine_z = { 'windows' },
       },
       sections = {
-        lualine_a = { { 'mode', padding = { left = 2, right = 2 } } },
+        lualine_a = { 'mode' },
+        lualine_b = { { 'branch', icon = '' }, 'diff', 'diagnostics' },
         lualine_y = { 'location', 'progress' },
         lualine_z = {
           {
             function()
               return ' ' .. os.date '%R'
             end,
-            padding = { left = 2, right = 2 },
+            padding = { left = 2, right = 1 },
           },
         },
       },

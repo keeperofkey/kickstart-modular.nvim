@@ -20,8 +20,8 @@ return {
           },
         },
         auto_install = true,
-        highlight = { enable = false },
         indent = { enable = true },
+        highlight = { enable = true },
       }
 
       -- There are additional nvim-treesitter modules that you can use to interact

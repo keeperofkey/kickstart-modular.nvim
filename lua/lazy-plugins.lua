@@ -120,4 +120,33 @@ local opts = {
 }
 
 require('lazy').setup(plugins, opts)
+local c_auto = require 'lualine.themes.gruvbox'
+c_auto.normal.c.bg = 'none'
+c_auto.normal.b.bg = 'none'
+c_auto.normal.a.fg = '#689d6a'
+c_auto.normal.a.bg = 'none'
+c_auto.insert.c.bg = 'none'
+c_auto.insert.c.fg = '#a89984'
+c_auto.insert.b.bg = 'none'
+c_auto.insert.a.fg = '#458588'
+c_auto.insert.a.bg = 'none'
+c_auto.visual.c.bg = 'none'
+c_auto.visual.c.fg = '#a89984'
+c_auto.visual.b.bg = 'none'
+c_auto.visual.a.fg = '#d79921'
+c_auto.visual.a.bg = 'none'
+c_auto.replace.c.bg = 'none'
+c_auto.replace.b.bg = 'none'
+c_auto.replace.a.fg = '#cc241d'
+c_auto.replace.a.bg = 'none'
+c_auto.command.c.bg = 'none'
+c_auto.command.c.fg = '#a89984'
+c_auto.command.b.bg = 'none'
+c_auto.command.a.fg = '#d65d0e'
+c_auto.command.a.bg = 'none'
+c_auto.inactive.c.bg = 'none'
+c_auto.inactive.b.bg = 'none'
+c_auto.inactive.a.fg = '#928374'
+c_auto.inactive.a.bg = 'none'
+require('lualine').setup { options = { theme = c_auto } }
 -- vim: ts=2 sts=2 sw=2 et
