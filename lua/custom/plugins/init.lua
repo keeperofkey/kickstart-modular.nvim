@@ -48,41 +48,6 @@ return {
       }
     end,
   },
-
-  {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    opts = {
-      options = {
-        theme = 'gruvbox',
-        component_separators = { left = '', right = '' },
-        section_separators = { left = '', right = '' },
-      },
-      tabline = {
-        lualine_a = {},
-        lualine_b = { { 'tabs', symbols = { modified = '~' } } },
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = { 'windows' },
-      },
-      sections = {
-        lualine_a = { 'mode' },
-        lualine_b = { { 'branch', icon = '' }, 'diff', 'diagnostics' },
-        lualine_c = {},
-        lualine_x = { 'filetype' },
-        lualine_y = { 'location' },
-        lualine_z = {
-          {
-            function()
-              return ' ' .. os.date '%R'
-            end,
-            padding = { left = 2, right = 1 },
-          },
-        },
-      },
-    },
-  },
   {
     'theprimeagen/harpoon',
     branch = 'harpoon2',

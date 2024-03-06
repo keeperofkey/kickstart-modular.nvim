@@ -96,6 +96,8 @@ local plugins = {
 
   require 'kickstart/plugins/treesitter',
 
+  require 'kickstart/plugins/lualine',
+
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- put them in the right spots if you want.
@@ -120,6 +122,7 @@ local opts = {
 }
 
 require('lazy').setup(plugins, opts)
+
 local c_auto = require 'lualine.themes.gruvbox'
 c_auto.normal.c.bg = 'none'
 c_auto.normal.b.bg = 'none'
