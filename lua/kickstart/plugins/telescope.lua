@@ -33,6 +33,7 @@ return {
       { 'nvim-tree/nvim-web-devicons' },
       { 'nvim-telescope/telescope-file-browser.nvim' },
       { 'nvim-telescope/telescope-frecency.nvim' },
+      { 'nvim-telescope/telescope-project.nvim' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -82,7 +83,7 @@ return {
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'file_browser')
       pcall(require('telescope').load_extension, 'frecency')
-
+      pcall(require('telescope').load_extension 'project')
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
@@ -97,6 +98,7 @@ return {
       vim.keymap.set('n', '<leader>fo', builtin.buffers, { desc = '[F]ind [O]pen buffers' })
       vim.keymap.set('n', '<leader>fb', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { desc = '[F]ile [b]rowser from current buffer' })
       vim.keymap.set('n', '<leader>fB', ':Telescope file_browser<CR>', { desc = '[F]ile [B]rowser CWD' })
+      vim.keymap.set('n', '<leader>fp', ':lua require("telescope").extensions.project.project{}<CR>', { desc = '[F]ind [p]rojects CWD' })
       vim.keymap.set('n', '<leader><leader>', ':Telescope frecency<CR>', { desc = '[ ] Find frecency' })
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()

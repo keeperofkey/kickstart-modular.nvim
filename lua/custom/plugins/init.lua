@@ -55,12 +55,12 @@ return {
     opts = {
       options = {
         theme = 'gruvbox',
-        component_separators = { left = '>', right = '<' },
-        section_separators = { left = '', right = '' },
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
       },
       tabline = {
         lualine_a = {},
-        lualine_b = { 'tabs' },
+        lualine_b = { { 'tabs', symbols = { modified = '~' } } },
         lualine_c = {},
         lualine_x = {},
         lualine_y = {},
@@ -69,7 +69,9 @@ return {
       sections = {
         lualine_a = { 'mode' },
         lualine_b = { { 'branch', icon = '' }, 'diff', 'diagnostics' },
-        lualine_y = { 'location', 'progress' },
+        lualine_c = {},
+        lualine_x = { 'filetype' },
+        lualine_y = { 'location' },
         lualine_z = {
           {
             function()

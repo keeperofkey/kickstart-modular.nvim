@@ -3,6 +3,9 @@
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+-- show cmd only when active
+vim.opt.cmdheight = 0
+
 vim.opt.sh = '/usr/bin/zsh'
 -- Make line numbers default
 vim.opt.number = true
