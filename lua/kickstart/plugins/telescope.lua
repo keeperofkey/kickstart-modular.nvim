@@ -34,6 +34,7 @@ return {
       { 'nvim-telescope/telescope-file-browser.nvim' },
       { 'nvim-telescope/telescope-frecency.nvim' },
       { 'nvim-telescope/telescope-project.nvim' },
+      { 'benfowler/telescope-luasnip.nvim' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -75,6 +76,10 @@ return {
           ['file_browser'] = {
             hijack_netrw = true,
           },
+          ['luasnip'] = {
+            require('telescope.themes').get_ivy(),
+            theme = 'dropdown',
+          },
         },
       }
 
@@ -83,23 +88,25 @@ return {
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'file_browser')
       pcall(require('telescope').load_extension, 'frecency')
-      pcall(require('telescope').load_extension 'project')
+      pcall(require('telescope').load_extension, 'project')
+      pcall(require('telescope').load_extension, 'luasnip')
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[F]ind [H]elp' })
-      vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[F]ind [K]eymaps' })
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
-      vim.keymap.set('n', '<leader>fs', builtin.builtin, { desc = '[F]ind [S]elect Telescope' })
-      vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = '[F]ind current [W]ord' })
-      vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[F]ind by [G]rep' })
-      vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[F]ind [D]iagnostics' })
-      vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = '[F]ind [R]esume' })
-      vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader>fo', builtin.buffers, { desc = '[F]ind [O]pen buffers' })
-      vim.keymap.set('n', '<leader>fb', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { desc = '[F]ile [b]rowser from current buffer' })
-      vim.keymap.set('n', '<leader>fB', ':Telescope file_browser<CR>', { desc = '[F]ile [B]rowser CWD' })
-      vim.keymap.set('n', '<leader>fp', ':lua require("telescope").extensions.project.project{}<CR>', { desc = '[F]ind [p]rojects CWD' })
-      vim.keymap.set('n', '<leader><leader>', ':Telescope frecency<CR>', { desc = '[ ] Find frecency' })
+      vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[f]ind [h]elp' })
+      vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[f]ind [k]eymaps' })
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[f]ind [f]iles' })
+      vim.keymap.set('n', '<leader>fs', builtin.builtin, { desc = '[f]ind [s]elect Telescope' })
+      vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = '[f]ind current [w]ord' })
+      vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[f]ind by [g]rep' })
+      vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[f]ind [d]iagnostics' })
+      vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = '[f]ind [r]esume' })
+      vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = '[f]ind recent files ("." for repeat)' })
+      vim.keymap.set('n', '<leader>fo', builtin.buffers, { desc = '[f]ind [o]pen buffers' })
+      vim.keymap.set('n', '<leader>fb', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { desc = '[f]ile [b]rowser from current buffer' })
+      vim.keymap.set('n', '<leader>fB', ':Telescope file_browser<CR>', { desc = '[f]ile [B]rowser CWD' })
+      vim.keymap.set('n', '<leader>fp', ':lua require("telescope").extensions.project.project{}<CR>', { desc = '[f]ind [p]rojects CWD' })
+      vim.keymap.set('n', '<leader>fF', ':Telescope frecency<CR>', { desc = '[f]ind [F]recency' })
+      vim.keymap.set('n', '<leader>fl', ':Telescope luasnip<CR>', { desc = '[f]ind [l]uasnips' })
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to telescope to change theme, layout, etc.

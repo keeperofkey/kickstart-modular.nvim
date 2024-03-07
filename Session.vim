@@ -13,14 +13,16 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +68 ~/.config/nvim/lua/custom/plugins/init.lua
+badd +29 ~/.config/nvim/lua/custom/plugins/init.lua
 badd +1 ~/.config/nvim/init.lua
 badd +1 ~/.config/nvim/lua/kickstart/plugins/mini.lua
-badd +1 ~/.config/nvim/lua/kickstart/plugins/telescope.lua
-badd +0 ~/repos
+badd +81 ~/.config/nvim/lua/kickstart/plugins/telescope.lua
+badd +1 ~/repos
+badd +66 ~/.config/nvim/lua/kickstart/plugins/cmp.lua
 argglobal
 %argdel
 $argadd ~/repos
+tabnew +setlocal\ bufhidden=wipe
 tabnew +setlocal\ bufhidden=wipe
 tabnew +setlocal\ bufhidden=wipe
 tabrewind
@@ -36,7 +38,7 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 23) / 46)
+let s:l = 1 - ((0 * winheight(0) + 35) / 71)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -56,16 +58,17 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 23) / 46)
+let s:l = 81 - ((19 * winheight(0) + 35) / 71)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
-normal! 0
+keepjumps 81
+normal! 031|
 if exists(':tcd') == 2 | tcd ~/.config/nvim | endif
 tabnext
-edit ~/.config/nvim/lua/kickstart/plugins/mini.lua
+edit ~/.config/nvim/lua/kickstart/plugins/cmp.lua
 argglobal
+balt ~/.config/nvim/lua/kickstart/plugins/telescope.lua
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -76,14 +79,35 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 23) / 46)
+let s:l = 66 - ((18 * winheight(0) + 35) / 71)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
-normal! 0
+keepjumps 66
+normal! 050|
 if exists(':tcd') == 2 | tcd ~/.config/nvim | endif
-tabnext 1
+tabnext
+edit ~/.config/nvim/lua/custom/plugins/init.lua
+argglobal
+balt ~/.config/nvim/lua/kickstart/plugins/mini.lua
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 29 - ((28 * winheight(0) + 35) / 71)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 29
+normal! 03|
+if exists(':tcd') == 2 | tcd ~/.config/nvim | endif
+tabnext 2
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif

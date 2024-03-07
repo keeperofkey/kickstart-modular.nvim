@@ -54,7 +54,7 @@ return {
             -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
             ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
             show_labelDetails = false, -- show labelDetails in menu. Disabled by default
-            symbol_map = { Cody = '󱚝' },
+            symbol_map = { Codeium = '󱚝' },
             experimental = { ghost_text = true },
             -- The function below will be called before any actual modifications from lspkind
             -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
@@ -63,7 +63,7 @@ return {
             end,
           },
         },
-        vim.api.nvim_set_hl(0, 'CmpItemKindCody', { fg = '#b16286' }),
+        vim.api.nvim_set_hl(0, 'CmpItemKindCodeium', { fg = '#b16286' }),
         window = {
           completion = cmp.config.window.bordered {
             side_padding = 1,
@@ -120,7 +120,7 @@ return {
           end, { 'i', 's' }),
         },
         sources = {
-          { name = 'cody' },
+          { name = 'codeium' },
           { name = 'luasnip' },
           { name = 'nvim_lsp' },
           { name = 'path' },
