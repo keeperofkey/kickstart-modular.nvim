@@ -5,6 +5,12 @@ vim.keymap.set('n', '<leader>m', function()
   require('mini.sessions').select()
 end, { desc = 'Open Session [m]enu' })
 -- SourceGraph
+vim.keymap.set('n', '<leader>sc', ':CodyChat<CR>', { desc = 'Open [S]ourcegraph cody [C]hat' })
+vim.keymap.set('n', '<leader>sn', ':CodyTaskNext<CR>', { desc = '[S]ourcegraph cody [N]ext' })
+vim.keymap.set('n', '<leader>sp', ':CodyTaskPrev<CR>', { desc = '[S]ourcegraph cody [P]rev' })
+vim.keymap.set('n', '<leader>sy', ':CodyTaskAccept<CR>', { desc = '[S]ourcegraph cody [Y]es' })
+vim.keymap.set('n', '<leader>st', ':CodyTask', { desc = 'Open [S]ourcegraph cody [T]ask' })
+vim.keymap.set('n', '<leader>sv', ":'<,'>CodyTask", { desc = 'Open [S]ourcegraph cody task [V]isual' })
 vim.cmd [[nnoremap <space>ss <cmd>lua require('sg.extensions.telescope').fuzzy_search_results()<CR>]]
 --  terminal
 vim.keymap.set('n', '<leader>t', function()
@@ -15,6 +21,9 @@ vim.keymap.set('n', '<leader>T', function()
   vim.cmd [[lcd %:p:h]]
   require('nvterm.terminal').new 'vertical'
 end, { desc = 'Open [T]erminal in vertical split' })
+
+-- Tab
+vim.keymap.set('i', '<Tab>', '<Tab>')
 
 -- Window split
 vim.keymap.set('n', '<leader>wl', '<C-w><C-v>', { desc = 'Open [W]indow in vertical split' })

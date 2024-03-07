@@ -3,6 +3,16 @@
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+-- Spelling cause i can no english
+vim.cmd [[
+autocmd FileType markdown setlocal spell
+autocmd FileType gitcommit setlocal spell
+autocmd FileType markdown setlocal complete+=kspell
+autocmd FileType gitcommit setlocal complete+=kspell
+]]
+-- Pmenu transparent
+-- vim.opt.pumblend = 20
+-- breaks cmp because of border padding weirdness
 -- show cmd only when active
 vim.opt.cmdheight = 0
 

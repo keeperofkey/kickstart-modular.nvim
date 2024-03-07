@@ -54,8 +54,8 @@ return {
             -- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
             ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
             show_labelDetails = false, -- show labelDetails in menu. Disabled by default
-            symbol_map = { Codeium = '' },
-            experimental = { ghost_text = { hlgroup = '' } },
+            symbol_map = { Cody = '󱚝' },
+            experimental = { ghost_text = true },
             -- The function below will be called before any actual modifications from lspkind
             -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
             before = function(entry, vim_item)
@@ -63,7 +63,7 @@ return {
             end,
           },
         },
-        vim.api.nvim_set_hl(0, 'CmpItemKindCodeium', { fg = '#6CC644' }),
+        vim.api.nvim_set_hl(0, 'CmpItemKindCody', { fg = '#b16286' }),
         window = {
           completion = cmp.config.window.bordered {
             side_padding = 1,
@@ -88,9 +88,8 @@ return {
           -- Abort completion
           ['<C-e>'] = cmp.mapping.abort(),
 
-          --  This will auto-import if your LSP supports it.
-          --  This will expand snippets if the LSP sent a snippet.
           ['<C-Tab>'] = cmp.mapping.confirm { select = true },
+          ['<C-y>'] = cmp.mapping.confirm { select = true },
 
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
@@ -105,11 +104,13 @@ return {
           --
           -- <c-l> will move you to the right of each of the expansion locations.
           -- <c-h> is similar, except moving you backwards.
-          ['<Tab>'] = cmp.mapping(function()
+          ['<Tab>'] = cmp.mapping(function(fallback)
             if luasnip.expand_or_locally_jumpable() then
               luasnip.expand_or_jump()
+            elseif cmp.visible() then
+              cmp.confirm { select = true }
             else
-              cmp.confirm()
+              fallback()
             end
           end, { 'i', 's' }),
           ['<S-Tab>'] = cmp.mapping(function()
@@ -119,7 +120,7 @@ return {
           end, { 'i', 's' }),
         },
         sources = {
-          { name = 'codeium' },
+          { name = 'cody' },
           { name = 'luasnip' },
           { name = 'nvim_lsp' },
           { name = 'path' },
