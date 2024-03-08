@@ -16,13 +16,12 @@ endif
 badd +29 ~/.config/nvim/lua/custom/plugins/init.lua
 badd +1 ~/.config/nvim/init.lua
 badd +1 ~/.config/nvim/lua/kickstart/plugins/mini.lua
-badd +81 ~/.config/nvim/lua/kickstart/plugins/telescope.lua
+badd +72 ~/.config/nvim/lua/kickstart/plugins/telescope.lua
 badd +1 ~/repos
 badd +66 ~/.config/nvim/lua/kickstart/plugins/cmp.lua
 argglobal
 %argdel
 $argadd ~/repos
-tabnew +setlocal\ bufhidden=wipe
 tabnew +setlocal\ bufhidden=wipe
 tabnew +setlocal\ bufhidden=wipe
 tabrewind
@@ -44,26 +43,6 @@ keepjumps exe s:l
 normal! zt
 keepjumps 1
 normal! 0
-if exists(':tcd') == 2 | tcd ~/.config/nvim | endif
-tabnext
-edit ~/.config/nvim/lua/kickstart/plugins/telescope.lua
-argglobal
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 81 - ((19 * winheight(0) + 35) / 71)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 81
-normal! 031|
 if exists(':tcd') == 2 | tcd ~/.config/nvim | endif
 tabnext
 edit ~/.config/nvim/lua/kickstart/plugins/cmp.lua

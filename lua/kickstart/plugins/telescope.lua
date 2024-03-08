@@ -8,7 +8,7 @@
 return {
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
-    event = 'VeryLazy',
+    -- event = 'VeryLazy',
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -66,7 +66,7 @@ return {
           --   mappings = {
           --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
           --   },
-          initial_mode = 'normal',
+          initial_mode = 'insert',
         },
         -- pickers = {}
         extensions = {
@@ -74,11 +74,9 @@ return {
             require('telescope.themes').get_dropdown(),
           },
           ['file_browser'] = {
+            layout_strategy = 'vertical',
             hijack_netrw = true,
-          },
-          ['luasnip'] = {
-            require('telescope.themes').get_ivy(),
-            theme = 'dropdown',
+            initial_mode = 'normal',
           },
         },
       }
@@ -102,6 +100,8 @@ return {
       vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = '[f]ind [r]esume' })
       vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = '[f]ind recent files ("." for repeat)' })
       vim.keymap.set('n', '<leader>fo', builtin.buffers, { desc = '[f]ind [o]pen buffers' })
+      vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = '[f]ind [c]ommands' })
+      vim.keymap.set('n', '<leader>fz', builtin.spell_suggest, { desc = '[f]ind [z] spelling suggestions' })
       vim.keymap.set('n', '<leader>fb', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { desc = '[f]ile [b]rowser from current buffer' })
       vim.keymap.set('n', '<leader>fB', ':Telescope file_browser<CR>', { desc = '[f]ile [B]rowser CWD' })
       vim.keymap.set('n', '<leader>fp', ':lua require("telescope").extensions.project.project{}<CR>', { desc = '[f]ind [p]rojects CWD' })
