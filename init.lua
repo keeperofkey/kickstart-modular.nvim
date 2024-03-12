@@ -43,6 +43,7 @@ vim.cmd [[highlight CursorLine guibg=none gui=bold]]
 vim.cmd [[highlight CursorLineNr guibg=none gui=bold]]
 vim.cmd [[highlight Pmenu guibg=Gruvboxbg0]]
 vim.cmd [[highlight PmenuSel guibg=none guifg=#fabd2f gui=bold]]
+vim.cmd [[highlight NotificationInfo guibg=none]]
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

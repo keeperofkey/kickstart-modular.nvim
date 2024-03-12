@@ -25,7 +25,7 @@ return {
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-buffer',
       'onsails/lspkind.nvim',
-
+      'kristijanhusak/vim-dadbod-completion',
       -- If you want to add a bunch of pre-configured snippets,
       --    you can use this plugin to help you. It even has snippets
       --    for various frameworks/libraries/etc. but you will have to
@@ -121,6 +121,7 @@ return {
         },
         sources = {
           { name = 'codeium' },
+          { name = 'vim-dadbod-completion' },
           { name = 'luasnip' },
           { name = 'nvim_lsp' },
           { name = 'path' },

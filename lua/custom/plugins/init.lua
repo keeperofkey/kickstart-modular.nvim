@@ -3,11 +3,11 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-  {
-    'microsoft/vscode-js-debug',
-    opt = true,
-    run = 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out',
-  },
+  -- {
+  --   'microsoft/vscode-js-debug',
+  --   opt = true,
+  --   run = 'npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out',
+  -- },
   {
     'iamcco/markdown-preview.nvim',
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
@@ -94,6 +94,39 @@ return {
   --   dependencies = { 'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim' },
   --   opts = { disable_mouse = false, max_count = 5, allow_different_key = true },
   -- },
+  -- {
+  --   'kndndrj/nvim-dbee',
+  --   dependencies = {
+  --     'MunifTanjim/nui.nvim',
+  --   },
+  --   build = function()
+  --     -- Install tries to automatically detect the install method.
+  --     -- if it fails, try calling it with one of these parameters:
+  --     --    "curl", "wget", "bitsadmin", "go"
+  --     require('dbee').install()
+  --   end,
+  --   config = function()
+  --     require('dbee').setup(--[[optional config]])
+  --   end,
+  -- },
+  { 'tpope/vim-dadbod' },
+  {
+    'kristijanhusak/vim-dadbod-ui',
+    dependencies = {
+      { 'tpope/vim-dadbod', lazy = true },
+      { 'kristijanhusak/vim-dadbod-completion' },
+    },
+    cmd = {
+      'DBUI',
+      'DBUIToggle',
+      'DBUIAddConnection',
+      'DBUIFindBuffer',
+    },
+    init = function()
+      -- Your DBUI configuration
+      vim.g.db_ui_use_nerd_fonts = 1
+    end,
+  },
   {
     'sourcegraph/sg.nvim',
     -- lazy = true,
