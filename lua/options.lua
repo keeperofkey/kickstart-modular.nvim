@@ -14,7 +14,7 @@ autocmd FileType gitcommit setlocal complete+=kspell
 -- vim.opt.pumblend = 20
 -- breaks cmp because of border padding weirdness
 -- show cmd only when active
-vim.opt.cmdheight = 0
+-- vim.opt.cmdheight = 0
 
 vim.opt.sh = '/usr/bin/zsh'
 -- Make line numbers default

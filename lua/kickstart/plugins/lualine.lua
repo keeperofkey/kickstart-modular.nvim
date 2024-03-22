@@ -2,7 +2,7 @@ return {
 
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons', 'arkav/lualine-lsp-progress' },
     opts = function()
       local lualine = require 'lualine'
       local function cmd_messege()
@@ -47,7 +47,7 @@ return {
           lualine_z = { 'windows' },
         },
         sections = {
-          lualine_a = { { 'mode', padding = { left = 1, right = 1, top = 2 } } },
+          lualine_a = { { 'mode', padding = { left = 0, right = 1 } } },
           lualine_b = { { 'branch', icon = '' }, 'diff', 'diagnostics' },
           lualine_c = {
             {
@@ -58,14 +58,14 @@ return {
               fmt = show_macro_recording,
             },
             cmd_messege,
-            '%S',
+            'lsp_progress',
           },
           lualine_x = { 'filetype' },
           lualine_y = { 'location' },
           lualine_z = {
             {
               function()
-                return ' ' .. os.date '%R'
+                return '  ' .. os.date '%R'
               end,
               padding = { left = 2, right = 1 },
             },
