@@ -26,12 +26,12 @@ end, { desc = 'Open [T]erminal in vertical split' })
 vim.keymap.set('i', '<Tab>', '<Tab>')
 
 -- Window split
-vim.keymap.set('n', '<leader>wl', '<C-w><C-v>', { desc = 'Open [W]indow in vertical split' })
-vim.keymap.set('n', '<leader>wj', '<C-w><C-s>', { desc = 'Open [W]indow in horizontal split' })
+vim.keymap.set('n', '<leader>v', '<C-w><C-v>', { desc = 'Open [W]indow in vertical split' })
+vim.keymap.set('n', '<leader>h', '<C-w><C-s>', { desc = 'Open [W]indow in horizontal split' })
 
 -- Window movement
-vim.keymap.set('n', '<leader>wL', '<C-w>L', { desc = 'Move [W]indow to the right' })
-vim.keymap.set('n', '<leader>wJ', '<C-w>J', { desc = 'Move [W]indow to the bottom' })
+vim.keymap.set('n', '<leader>L', '<C-w>L', { desc = 'Move Window to the right [L]' })
+vim.keymap.set('n', '<leader>J', '<C-w>J', { desc = 'Move Window to the bottom [J]' })
 
 -- Window resize
 vim.keymap.set('n', '<leader>we', '<C-w>=', { desc = '[W]indows [e]qual' })
