@@ -25,6 +25,7 @@ return {
       --   return '%2l:%-2v'
       -- end
 
+      -- require('mini.notify').setup { lsp_progress = { enable = false }, window = { winblend = 0 } }
       -- require('mini.sessions').setup { autoread = true, autowrite = false }
 
       -- ... and there is more!
