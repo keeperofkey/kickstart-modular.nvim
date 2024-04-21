@@ -40,28 +40,28 @@ return {
       vim.fn['mkdp#util#install']()
     end,
   },
-  {
-    'Exafunction/codeium.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'hrsh7th/nvim-cmp',
-    },
-    config = function()
-      require('codeium').setup {}
-    end,
-  },
-  {
-    'NvChad/nvterm',
-    config = function()
-      require('nvterm').setup {
-        shell = '/usr/bin/fish',
-        terminals = {
-          horizontal = { split_ratio = 0.2 },
-          vertical = { split_ratio = 0.5 },
-        },
-      }
-    end,
-  },
+  -- {
+  --   'Exafunction/codeium.nvim',
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --     'hrsh7th/nvim-cmp',
+  --   },
+  --   config = function()
+  --     require('codeium').setup {}
+  --   end,
+  -- },
+  -- {
+  --   'NvChad/nvterm',
+  --   config = function()
+  --     require('nvterm').setup {
+  --       shell = '/usr/bin/fish',
+  --       terminals = {
+  --         horizontal = { split_ratio = 0.2 },
+  --         vertical = { split_ratio = 0.5 },
+  --       },
+  --     }
+  --   end,
+  -- },
   { 'nvim-tree/nvim-web-devicons' },
   {
     'folke/noice.nvim',
@@ -96,7 +96,7 @@ return {
         'rcarriga/nvim-notify',
         config = function()
           require('notify').setup {
-            timeout = 1000,
+            timeout = 2000,
             stages = 'static',
             render = 'wrapped-compact',
             background_colour = '#000000',
