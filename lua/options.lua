@@ -2,7 +2,6 @@
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
-
 -- Spelling cause i can no english
 vim.cmd [[
 autocmd FileType markdown setlocal spell
@@ -16,7 +15,7 @@ autocmd FileType gitcommit setlocal complete+=kspell
 -- show cmd only when active
 -- vim.opt.cmdheight = 0
 
-vim.opt.sh = '/usr/bin/zsh'
+vim.opt.sh = '/usr/bin/bash'
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, for help with jumping.

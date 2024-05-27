@@ -32,8 +32,8 @@ return {
       --  you can enable this
       { 'nvim-tree/nvim-web-devicons' },
       { 'nvim-telescope/telescope-file-browser.nvim' },
-      { 'nvim-telescope/telescope-frecency.nvim' },
-      { 'nvim-telescope/telescope-project.nvim' },
+      -- { 'nvim-telescope/telescope-frecency.nvim' },
+      -- { 'nvim-telescope/telescope-project.nvim' },
       { 'benfowler/telescope-luasnip.nvim' },
     },
     config = function()
@@ -85,8 +85,8 @@ return {
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'file_browser')
-      pcall(require('telescope').load_extension, 'frecency')
-      pcall(require('telescope').load_extension, 'project')
+      -- pcall(require('telescope').load_extension, 'frecency')
+      -- pcall(require('telescope').load_extension, 'project')
       pcall(require('telescope').load_extension, 'luasnip')
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -104,8 +104,8 @@ return {
       vim.keymap.set('n', '<leader>fz', builtin.spell_suggest, { desc = '[f]ind [z] spelling suggestions' })
       vim.keymap.set('n', '<leader>fb', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { desc = '[f]ile [b]rowser from current buffer' })
       vim.keymap.set('n', '<leader>fB', ':Telescope file_browser<CR>', { desc = '[f]ile [B]rowser CWD' })
-      vim.keymap.set('n', '<leader>fp', ':lua require("telescope").extensions.project.project{}<CR>', { desc = '[f]ind [p]rojects CWD' })
-      vim.keymap.set('n', '<leader>fF', ':Telescope frecency<CR>', { desc = '[f]ind [F]recency' })
+      -- vim.keymap.set('n', '<leader>fp', ':lua require("telescope").extensions.project.project{}<CR>', { desc = '[f]ind [p]rojects CWD' })
+      -- vim.keymap.set('n', '<leader>fF', ':Telescope frecency<CR>', { desc = '[f]ind [F]recency' })
       vim.keymap.set('n', '<leader>fl', ':Telescope luasnip<CR>', { desc = '[f]ind [l]uasnips' })
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
