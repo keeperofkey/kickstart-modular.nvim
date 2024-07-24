@@ -44,6 +44,9 @@ vim.cmd [[highlight CursorLineNr guibg=none gui=bold]]
 vim.cmd [[highlight Pmenu guibg=Gruvboxbg0]]
 vim.cmd [[highlight PmenuSel guibg=none guifg=#fabd2f gui=bold]]
 vim.cmd [[highlight NotificationInfo guibg=none]]
+vim.cmd [[highlight DiffAdd guibg=none guifg=#b8bb26]]
+vim.cmd [[highlight DiffChange guibg=none guifg=#fabd2f]]
+vim.cmd [[highlight DiffDelete guibg=none guifg=#fb4934 ]]
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

@@ -120,10 +120,10 @@ return {
           end, { 'i', 's' }),
         },
         sources = {
-          { name = 'cody' },
-          { name = 'vim-dadbod-completion' },
           { name = 'luasnip' },
           { name = 'nvim_lsp' },
+          { name = 'cody' },
+          { name = 'vim-dadbod-completion' },
           { name = 'path' },
           { name = 'buffer' },
         },

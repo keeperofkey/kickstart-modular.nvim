@@ -84,7 +84,7 @@ local plugins = {
 
   require 'kickstart/plugins/lspconfig',
 
-  require 'kickstart/plugins/conform',
+  -- require 'kickstart/plugins/conform',
 
   require 'kickstart/plugins/cmp',
 
@@ -104,7 +104,7 @@ local plugins = {
 
   -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for kickstart
   --
-  --  Here are some example plugins that I've included in the kickstart repository.
+  --  Here are some example plugins that I've included inthe kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   require 'kickstart.plugins.debug',

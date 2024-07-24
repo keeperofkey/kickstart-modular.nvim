@@ -11,7 +11,12 @@ vim.keymap.set('n', '<leader>cp', ':CodyTaskPrev<CR>', { desc = '[S]ourcegraph c
 vim.keymap.set('n', '<leader>cy', ':CodyTaskAccept<CR>', { desc = '[S]ourcegraph cody [Y]es' })
 vim.keymap.set('n', '<leader>ct', ':CodyTask', { desc = 'Open [S]ourcegraph cody [T]ask' })
 vim.keymap.set('n', '<leader>cv', ":'<,'>CodyTask", { desc = 'Open [S]ourcegraph cody task [V]isual' })
-vim.cmd [[nnoremap <space>ss <cmd>lua require('sg.extensions.telescope').fuzzy_search_results()<CR>]]
+vim.keymap.set('n', '<space>cs', '<cmd>lua require("sg.extensions.telescope").fuzzy_search_results()<CR>', { desc = 'Open [S]ourcegraph [S]earch' })
+vim.keymap.set('n', '<leader>ch', function()
+  require('sg.cody.commands').focus_history()
+end, { desc = 'Open [S]ourcegraph [H]istory' })
+
+-- vim.cmd [[nnoremap <space>ss <cmd>lua require('sg.extensions.telescope').fuzzy_search_results()<CR>]]
 --  terminal
 vim.keymap.set('n', '<leader>t', function()
   vim.cmd [[lcd %:p:h]]
