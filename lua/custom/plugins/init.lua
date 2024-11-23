@@ -4,21 +4,37 @@
 -- See the kickstart.nvim README for more information
 return {
   {
-    'nvimtools/none-ls.nvim',
-    config = function()
-      local null_ls = require 'null-ls'
-      null_ls.setup {
-        sources = {
-          null_ls.builtins.formatting.stylua,
-          null_ls.builtins.completion.spell,
-          null_ls.builtins.formatting.biome,
-          null_ls.builtins.formatting.black,
-          null_ls.builtins.completion.luasnip,
-        },
-      }
-    end,
-    requires = { 'nvim-lua/plenary.nvim' },
+    'NeogitOrg/neogit',
+    dependencies = {
+      'nvim-lua/plenary.nvim', -- required
+      'sindrets/diffview.nvim', -- optional - Diff integration
+
+      -- Only one of these is needed.
+      'nvim-telescope/telescope.nvim', -- optional
+      -- "ibhagwan/fzf-lua",              -- optional
+      -- "echasnovski/mini.pick",         -- optional
+    },
+    config = true,
   },
+  -- {
+  --   'nvimtools/none-ls.nvim',
+  --   config = function()
+  --     local null_ls = require 'null-ls'
+  --     null_ls.setup {
+  --       sources = {
+  --         null_ls.builtins.formatting.stylua,
+  --         -- null_ls.builtins.completion.spell,
+  --         null_ls.builtins.code_actions.proselint,
+  --         null_ls.builtins.completion.tags,
+  --
+  --         null_ls.builtins.formatting.biome,
+  --         null_ls.builtins.formatting.black,
+  --         null_ls.builtins.completion.luasnip,
+  --       },
+  --     }
+  --   end,
+  --   requires = { 'nvim-lua/plenary.nvim' },
+  -- },
   {
     'pmizio/typescript-tools.nvim',
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
