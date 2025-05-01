@@ -2,13 +2,14 @@
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
+--
 -- Spelling cause i can no english
-vim.cmd [[
-autocmd FileType markdown setlocal spell
-autocmd FileType gitcommit setlocal spell
-autocmd FileType markdown setlocal complete+=kspell
-autocmd FileType gitcommit setlocal complete+=kspell
-]]
+-- vim.cmd [[
+-- autocmd FileType markdown setlocal spell
+-- autocmd FileType gitcommit setlocal spell
+-- autocmd FileType markdown setlocal complete+=kspell
+-- autocmd FileType gitcommit setlocal complete+=kspell
+-- ]]
 -- Pmenu transparent
 -- vim.opt.pumblend = 20
 -- breaks cmp because of border padding weirdness
@@ -67,5 +68,8 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+
+-- Auto change dir
+vim.opt.autochdir = true
 
 -- vim: ts=2 sts=2 sw=2 et

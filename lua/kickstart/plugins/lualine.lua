@@ -5,6 +5,8 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons', 'arkav/lualine-lsp-progress' },
     opts = function()
       local lualine = require 'lualine'
+      local custom_gruv = require 'lualine.themes.gruvbox'
+      custom_gruv.normal.c.bg = 'none'
       local function cmd_messege()
         return vim.cmd.messages(1)
       end
@@ -70,6 +72,9 @@ return {
               padding = { left = 2, right = 1 },
             },
           },
+        },
+        highlights = {
+          background = 'none',
         },
       }
     end,

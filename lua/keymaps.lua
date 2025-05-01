@@ -4,17 +4,11 @@
 vim.keymap.set('n', '<leader>m', function()
   require('mini.sessions').select()
 end, { desc = 'Open Session [m]enu' })
--- SourceGraph
-vim.keymap.set('n', '<leader>cc', ':CodyChat<CR>', { desc = 'Open [S]ourcegraph cody [C]hat' })
-vim.keymap.set('n', '<leader>cn', ':CodyTaskNext<CR>', { desc = '[S]ourcegraph cody [N]ext' })
-vim.keymap.set('n', '<leader>cp', ':CodyTaskPrev<CR>', { desc = '[S]ourcegraph cody [P]rev' })
-vim.keymap.set('n', '<leader>cy', ':CodyTaskAccept<CR>', { desc = '[S]ourcegraph cody [Y]es' })
-vim.keymap.set('n', '<leader>ct', ':CodyTask', { desc = 'Open [S]ourcegraph cody [T]ask' })
-vim.keymap.set('n', '<leader>cv', ":'<,'>CodyTask", { desc = 'Open [S]ourcegraph cody task [V]isual' })
-vim.keymap.set('n', '<space>cs', '<cmd>lua require("sg.extensions.telescope").fuzzy_search_results()<CR>', { desc = 'Open [S]ourcegraph [S]earch' })
-vim.keymap.set('n', '<leader>ch', function()
-  require('sg.cody.commands').focus_history()
-end, { desc = 'Open [S]ourcegraph [H]istory' })
+-- Code & AI
+vim.keymap.set('n', '<leader>cc', ':CodeCompanionChat<CR>', { desc = 'Open [C]ode [C]hat' })
+vim.keymap.set('n', '<leader>ca', ':CodeCompanionActions<CR>', { desc = 'Open [C]ode [A]ctions' })
+vim.keymap.set('n', '<leader>cx', ':CodeCompanionCmd<CR>', { desc = 'Open [C]ode [X] command' })
+vim.keymap.set('n', '<leader>cs', ':Copilot suggestion toggle_auto_trigger<CR>', { desc = 'Toggle [C]ode [S]uggestiion' })
 
 -- vim.cmd [[nnoremap <space>ss <cmd>lua require('sg.extensions.telescope').fuzzy_search_results()<CR>]]
 --  terminal

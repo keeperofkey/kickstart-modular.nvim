@@ -64,6 +64,13 @@ return {
             end,
           },
         },
+        cmp.event:on('menu_opened', function()
+          vim.b.copilot_suggestion_hidden = true
+        end),
+
+        cmp.event:on('menu_closed', function()
+          vim.b.copilot_suggestion_hidden = false
+        end),
         vim.api.nvim_set_hl(0, 'CmpItemKindCody', { fg = '#b16286' }),
         window = {
           completion = cmp.config.window.bordered {
@@ -123,10 +130,10 @@ return {
         sources = {
           { name = 'luasnip' },
           { name = 'nvim_lsp' },
-          { name = 'cody' },
+          { name = 'copilot' },
           { name = 'vim-dadbod-completion' },
           { name = 'path' },
-          { name = 'buffer' },
+          -- { name = 'buffer' },
         },
       }
 

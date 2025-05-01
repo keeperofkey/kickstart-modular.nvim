@@ -4,6 +4,11 @@
 -- See the kickstart.nvim README for more information
 return {
   {
+    'vhyrro/luarocks.nvim',
+    priority = 1000, -- Very high priority is required, luarocks.nvim should run as the first plugin in your config.
+    config = true,
+  },
+  {
     'NeogitOrg/neogit',
     dependencies = {
       'nvim-lua/plenary.nvim', -- required
@@ -241,17 +246,151 @@ return {
       vim.g.db_ui_use_nerd_fonts = 1
     end,
   },
+  -- {
+  --   'sourcegraph/sg.nvim',
+  --   -- lazy = true,
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --     'nvim-telescope/telescope.nvim',
+  --   },
+  --   config = function()
+  --     require('sg').setup {
+  --       chat = { default_model = 'gpt-4o' },
+  --     }
+  --   end,
+  -- },
+  -- {
+  --   'yetone/avante.nvim',
+  --   event = 'VeryLazy',
+  --   version = false, -- Never set this value to "*"! Never!
+  --   opts = {
+  --     -- add any opts here
+  --     providers = { 'avante-cody' },
+  --   },
+  --   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+  --   build = 'make',
+  --   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+  --   dependencies = {
+  --     'nvim-treesitter/nvim-treesitter',
+  --     'stevearc/dressing.nvim',
+  --     'nvim-lua/plenary.nvim',
+  --     'MunifTanjim/nui.nvim',
+  --     --- The below dependencies are optional,
+  --     'echasnovski/mini.pick', -- for file_selector provider mini.pick
+  --     'nvim-telescope/telescope.nvim', -- for file_selector provider telescope
+  --     'hrsh7th/nvim-cmp', -- autocompletion for avante commands and mentions
+  --     'ibhagwan/fzf-lua', -- for file_selector provider fzf
+  --     'nvim-tree/nvim-web-devicons', -- or echasnovski/mini.icons
+  --     'zbirenbaum/copilot.lua', -- for providers='copilot'
+  --     {
+  --       -- support for image pasting
+  --       'HakonHarnes/img-clip.nvim',
+  --       event = 'VeryLazy',
+  --       opts = {
+  --         -- recommended settings
+  --         default = {
+  --           embed_image_as_base64 = false,
+  --           prompt_for_file_name = false,
+  --           drag_and_drop = {
+  --             insert_mode = true,
+  --           },
+  --           -- required for Windows users
+  --           use_absolute_path = true,
+  --         },
+  --       },
+  --     },
+  --     {
+  --       -- Make sure to set this up properly if you have lazy=true
+  --       'MeanderingProgrammer/render-markdown.nvim',
+  --       opts = {
+  --         file_types = { 'markdown', 'Avante' },
+  --       },
+  --       ft = { 'markdown', 'Avante' },
+  --     },
+  --     {
+  --       'brewinski/avante-cody.nvim',
+  --       opts = {
+  --         providers = {
+  --           ['avante-cody'] = {
+  --             endpoint = 'https://sourcegraph.com',
+  --             -- endpoint= 'https://<your_instance>.sourcegraphcloud.com',
+  --             api_key_name = 'SRC_ACCESS_TOKEN',
+  --             model = 'openai::2024-02-01::gpt-4.1',
+  --           },
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
   {
-    'sourcegraph/sg.nvim',
-    -- lazy = true,
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope.nvim',
-    },
+    'ravitemer/mcphub.nvim',
+    build = 'npm install -g mcp-hub@latest',
     config = function()
-      require('sg').setup {
-        chat = { default_model = 'gpt-4o' },
-      }
+      require('mcphub').setup()
     end,
+  },
+  {
+    'olimorris/codecompanion.nvim',
+    opts = {
+      strategies = {
+        chat = {
+          adapter = 'anthropic',
+          schema = {
+            model = {
+              default = 'claude-3-7-sonnet-20250219',
+            },
+          },
+        },
+        inline = {
+          adapter = 'copilot',
+          --   -- schema = {
+          --   --   model = {
+          --   --     default = 'deepseek-ai/DeepSeek-R1-Distill-Qwen-32B',
+          --   --   },
+          --   -- },
+        },
+        cmd = {
+          adapter = 'huggingface',
+          schema = {
+            model = {
+              default = 'deepseek-ai/DeepSeek-R1-Distill-Qwen-32B',
+            },
+          },
+        },
+      },
+      extensions = {
+        mcphub = {
+          callback = 'mcphub.extensions.codecompanion',
+          opts = {
+            make_vars = true,
+            make_slash_commands = true,
+            show_result_in_chat = true,
+          },
+        },
+      },
+    },
+    dependencies = {
+      'ravitemer/mcphub.nvim',
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      {
+        'zbirenbaum/copilot.lua',
+        cmd = 'Copilot',
+        event = 'InsertEnter',
+        config = function()
+          require('copilot').setup {
+            filetypes = { ['*'] = true },
+            suggestion = {
+              keymap = {
+                accept = '<C-S-Right>',
+                next = '<C-S-Up>',
+                prev = '<C-S-Down>',
+              },
+              auto_trigger = false,
+            },
+          }
+        end,
+      },
+    },
   },
 }
