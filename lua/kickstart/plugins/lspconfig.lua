@@ -1,4 +1,18 @@
 return {
+  {
+    -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
+    -- used for completion, annotations and signatures of Neovim apis
+    'folke/lazydev.nvim',
+    ft = 'lua',
+    opts = {
+      library = {
+        '~/.config/awesome',
+        'lazy.nvim',
+        -- Load luvit types when the `vim.uv` word is found
+        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+      },
+    },
+  },
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -132,7 +146,7 @@ return {
       --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+      -- capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -156,29 +170,29 @@ return {
         -- tsserver = { filetypes = { 'typescript', 'svelte' } },
         --
 
-        lua_ls = {
-          -- cmd = {...},
-          -- filetypes { ...},
-          -- capabilities = {},
-          settings = {
-            Lua = {
-              runtime = { version = 'LuaJIT' },
-              workspace = {
-                checkThirdParty = false,
-                -- Tells lua_ls where to find all the Lua files that you have loaded
-                -- for your neovim configuration.
-                library = {
-                  '${3rd}/luv/library',
-                  unpack(vim.api.nvim_get_runtime_file('', true)),
-                },
-                -- If lua_ls is really slow on your computer, you can try this instead:
-                -- library = { vim.env.VIMRUNTIME },
-              },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              diagnostics = { disable = { 'missing-fields' } },
-            },
-          },
-        },
+        --   lua_ls = {
+        --     -- cmd = {...},
+        --     -- filetypes { ...},
+        --     -- capabilities = {},
+        --     settings = {
+        --       Lua = {
+        --         runtime = { version = 'LuaJIT' },
+        --         workspace = {
+        --           checkThirdParty = false,
+        --           -- Tells lua_ls where to find all the Lua files that you have loaded
+        --           -- for your neovim configuration.
+        --           library = {
+        --             '${3rd}/luv/library',
+        --             unpack(vim.api.nvim_get_runtime_file('', true)),
+        --           },
+        --           -- If lua_ls is really slow on your computer, you can try this instead:
+        --           -- library = { vim.env.VIMRUNTIME },
+        --         },
+        --         -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+        --         diagnostics = { disable = { 'missing-fields' } },
+        --       },
+        --     },
+        --   },
       }
 
       -- Ensure the servers and tools above are installed

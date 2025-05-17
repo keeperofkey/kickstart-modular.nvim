@@ -35,6 +35,7 @@ return {
       -- { 'nvim-telescope/telescope-frecency.nvim' },
       -- { 'nvim-telescope/telescope-project.nvim' },
       { 'benfowler/telescope-luasnip.nvim' },
+      { 'ghassan0/telescope-glyph.nvim' },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -88,7 +89,10 @@ return {
       -- pcall(require('telescope').load_extension, 'frecency')
       -- pcall(require('telescope').load_extension, 'project')
       pcall(require('telescope').load_extension, 'luasnip')
+      pcall(require('telescope').load_extension, 'glyph')
+
       -- See `:help telescope.builtin`
+      -- Binds
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[f]ind [h]elp' })
       vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[f]ind [k]eymaps' })
@@ -130,7 +134,7 @@ return {
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[F]ind [N]eovim files' })
       vim.keymap.set('n', '<leader>fx', function()
-        builtin.find_files { cwd = "$HOME/.config" }
+        builtin.find_files { cwd = '$HOME/.config' }
       end, { desc = '[F]ind [x] config files' })
     end,
   },

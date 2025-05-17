@@ -128,9 +128,9 @@ return {
           end, { 'i', 's' }),
         },
         sources = {
-          { name = 'luasnip' },
-          { name = 'nvim_lsp' },
           { name = 'copilot' },
+          { name = 'nvim_lsp' },
+          { name = 'luasnip' },
           { name = 'vim-dadbod-completion' },
           { name = 'path' },
           -- { name = 'buffer' },

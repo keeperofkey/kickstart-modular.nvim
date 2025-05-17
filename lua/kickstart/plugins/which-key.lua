@@ -33,6 +33,8 @@ return {
         { '<leader>c_', hidden = true },
         { '<leader>d', group = '[D]ocument' },
         { '<leader>d_', hidden = true },
+        { '<leader>t', group = '[T]rouble' },
+        { '<leader>t_', hidden = true },
         { '<leader>f', group = '[F]ind' },
         { '<leader>g', group = '[G]rapple' },
         { '<leader>r', group = '[R]ename' },

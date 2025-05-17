@@ -86,7 +86,8 @@ local plugins = {
 
   require 'kickstart/plugins/conform',
 
-  require 'kickstart/plugins/cmp',
+  -- require 'kickstart/plugins/cmp',
+  require 'kickstart/plugins/blink',
 
   require 'kickstart/plugins/colorscheme',
 

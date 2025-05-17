@@ -1,28 +1,49 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 --  Mini sessions
-vim.keymap.set('n', '<leader>m', function()
-  require('mini.sessions').select()
-end, { desc = 'Open Session [m]enu' })
+-- vim.keymap.set('n', '<leader>m', function()
+--   require('mini.sessions').select()
+-- end, { desc = 'Open Session [m]enu' })
 -- Code & AI
 vim.keymap.set('n', '<leader>cc', ':CodeCompanionChat<CR>', { desc = 'Open [C]ode [C]hat' })
 vim.keymap.set('n', '<leader>ca', ':CodeCompanionActions<CR>', { desc = 'Open [C]ode [A]ctions' })
 vim.keymap.set('n', '<leader>cx', ':CodeCompanionCmd<CR>', { desc = 'Open [C]ode [X] command' })
 vim.keymap.set('n', '<leader>cs', ':Copilot suggestion toggle_auto_trigger<CR>', { desc = 'Toggle [C]ode [S]uggestiion' })
 
+vim.keymap.set('n', '<leader>cw', function()
+  require('codeium.virtual_text').cycle_or_complete()
+end, { desc = '[C]ode [w]indsurf' })
+
+-- load the session for the current directory
+vim.keymap.set('n', '<leader>sl', function()
+  require('persistence').load()
+end, { desc = '[S]ession [l]oad current directory' })
+-- select a session to load
+vim.keymap.set('n', '<leader>ss', function()
+  require('persistence').select()
+end, { desc = '[S]ession [s]elect' })
+-- load the last session
+vim.keymap.set('n', '<leader>sL', function()
+  require('persistence').load { last = true }
+end, { desc = '[S]ession [L]oad last' })
+-- stop Persistence => session won't be saved on exit
+vim.keymap.set('n', '<leader>sd', function()
+  require('persistence').stop()
+end, { desc = '[S]ession [d]ont save' })
+
 -- vim.cmd [[nnoremap <space>ss <cmd>lua require('sg.extensions.telescope').fuzzy_search_results()<CR>]]
 --  terminal
-vim.keymap.set('n', '<leader>t', function()
-  vim.cmd [[lcd %:p:h]]
-  require('nvterm.terminal').new 'horizontal'
-end, { desc = 'Open [t]erminal in horizontal split' })
-vim.keymap.set('n', '<leader>T', function()
-  vim.cmd [[lcd %:p:h]]
-  require('nvterm.terminal').new 'vertical'
-end, { desc = 'Open [T]erminal in vertical split' })
+-- vim.keymap.set('n', '<leader>t', function()
+--   vim.cmd [[lcd %:p:h]]
+--   require('nvterm.terminal').new 'horizontal'
+-- end, { desc = 'Open [t]erminal in horizontal split' })
+-- vim.keymap.set('n', '<leader>T', function()
+--   vim.cmd [[lcd %:p:h]]
+--   require('nvterm.terminal').new 'vertical'
+-- end, { desc = 'Open [T]erminal in vertical split' })
 
 -- Tab
-vim.keymap.set('i', '<Tab>', '<Tab>')
+-- vim.keymap.set('i', '<Tab>', '<Tab>')
 
 -- Window split
 vim.keymap.set('n', '<leader>v', '<C-w><C-v>', { desc = 'Open [W]indow in vertical split' })

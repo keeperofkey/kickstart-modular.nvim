@@ -6,7 +6,7 @@ return {
     opts = function()
       local lualine = require 'lualine'
       local custom_gruv = require 'lualine.themes.gruvbox'
-      custom_gruv.normal.c.bg = 'none'
+      -- custom_gruv.normal.c.bg = 'none'
       local function cmd_messege()
         return vim.cmd.messages(1)
       end
@@ -74,7 +74,7 @@ return {
           },
         },
         highlights = {
-          background = 'none',
+          -- background = 'none',
         },
       }
     end,
