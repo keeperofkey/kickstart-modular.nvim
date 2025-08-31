@@ -48,7 +48,7 @@ return {
           -- bright_red = '#e76f51',
           -- bright_green = '#606c38',
           -- bright_yellow = '#fcbf49',
-          bright_blue = '#367a9c',
+          bright_blue = '#59a1c6',
           bright_purple = '#a04edf',
           -- bright_aqua = '#8ec07c',
           -- bright_orange = '#f77f00',
