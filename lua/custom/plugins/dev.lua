@@ -5,7 +5,7 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
     opts = {},
   },
-  { 'altermo/nwm', branch = 'x11' },
+  -- { 'altermo/nwm', branch = 'x11' },
   -- {
   --   'iamcco/markdown-preview.nvim',
   --   cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
@@ -35,111 +35,134 @@ return {
   },
   -- ai
   {
-    'Exafunction/windsurf.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'hrsh7th/nvim-cmp',
-    },
+    'supermaven-inc/supermaven-nvim',
     config = function()
-      require('codeium').setup {
-        enable_cmp_source = false,
-        virtual_text = { enabled = true, key_bindings = { accept = '<C-Tab>' } },
+      require('supermaven-nvim').setup {
+        keymaps = {
+          accept_suggestion = '<Tab>',
+          clear_suggestion = '<C-]>',
+          accept_word = '<C-j>',
+        },
+        ignore_filetypes = { cpp = true }, -- or { "cpp", }
+        color = {
+          -- suggestion_color = '#ffffff',
+          -- cterm = 244,
+        },
+        log_level = 'info', -- set to "off" to disable logging completely
+        disable_inline_completion = false, -- disables inline completion for use with cmp
+        disable_keymaps = false, -- disables built in keymaps for more manual control
+        condition = function()
+          return false
+        end, -- condition to check for stopping supermaven, `true` means to stop supermaven when the condition is true.
       }
     end,
   },
-  {
-    'ravitemer/mcphub.nvim',
-    -- build = 'npm install -g mcp-hub@latest',
-    config = function()
-      require('mcphub').setup {
-        -- extensions = {
-        --   avante = {
-        --     make_slash_commands = true, -- make /slash commands from MCP server prompts
-        --   },
-        -- },
-      }
-    end,
-  },
-  {
-    'olimorris/codecompanion.nvim',
-    opts = {
-      adapters = {
-        openrouter = function()
-          return require('codecompanion.adapters').extend('openai_compatible', {
-            env = {
-              url = 'https://openrouter.ai/api',
-              api_key = 'OPENROUTER_API_KEY',
-              chat_url = '/v1/chat/completions',
-            },
-            schema = {
-              model = {
-                default = 'deepseek/deepseek-r1:free',
-              },
-            },
-          })
-        end,
-      },
-      strategies = {
-        chat = {
-          adapter = 'copilot',
-          -- schema = {
-          --   model = {
-          --     default = 'claude-3-7-sonnet-20250219',
-          --   },
-          -- },
-        },
-        inline = {
-          adapter = 'copilot',
-          --   -- schema = {
-          --   --   model = {
-          --   --     default = 'deepseek-ai/DeepSeek-R1-Distill-Qwen-32B',
-          --   --   },
-          --   -- },
-        },
-        cmd = {
-          adapter = 'huggingface',
-          schema = {
-            model = {
-              default = 'deepseek-ai/DeepSeek-R1-Distill-Qwen-32B',
-            },
-          },
-        },
-      },
-      extensions = {
-        mcphub = {
-          callback = 'mcphub.extensions.codecompanion',
-          opts = {
-            make_vars = true,
-            make_slash_commands = true,
-            show_result_in_chat = true,
-          },
-        },
-      },
-    },
-    dependencies = {
-      'ravitemer/mcphub.nvim',
-      'nvim-lua/plenary.nvim',
-      'nvim-treesitter/nvim-treesitter',
-      {
-        'zbirenbaum/copilot.lua',
-        cmd = 'Copilot',
-        event = 'InsertEnter',
-        config = function()
-          require('copilot').setup {
-            filetypes = { ['*'] = true },
-            suggestion = {
-              keymap = {
-                accept = '<C-S-Right>',
-                next = '<C-S-Up>',
-                prev = '<C-S-Down>',
-              },
-              auto_trigger = false,
-            },
-          }
-        end,
-      },
-    },
-  },
+  -- {
+  --   'Exafunction/windsurf.nvim',
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --     'hrsh7th/nvim-cmp',
+  --   },
+  --   config = function()
+  --     require('codeium').setup {
+  --       enable_cmp_source = false,
+  --       virtual_text = { enabled = true, key_bindings = { accept = '<C-Tab>' } },
+  --     }
+  --   end,
+  -- },
+  -- {
+  --   'ravitemer/mcphub.nvim',
+  --   -- build = 'npm install -g mcp-hub@latest',
+  --   config = function()
+  --     require('mcphub').setup {
+  --       -- extensions = {
+  --       --   avante = {
+  --       --     make_slash_commands = true, -- make /slash commands from MCP server prompts
+  --       --   },
+  --       -- },
+  --     }
+  --   end,
+  -- },
+  -- {
+  --   'olimorris/codecompanion.nvim',
+  --   opts = {
+  --     adapters = {
+  --       openrouter = function()
+  --         return require('codecompanion.adapters').extend('openai_compatible', {
+  --           env = {
+  --             url = 'https://openrouter.ai/api',
+  --             api_key = 'OPENROUTER_API_KEY',
+  --             chat_url = '/v1/chat/completions',
+  --           },
+  --           schema = {
+  --             model = {
+  --               default = 'deepseek/deepseek-r1:free',
+  --             },
+  --           },
+  --         })
+  --       end,
+  --     },
+  --     strategies = {
+  --       chat = {
+  --         adapter = 'copilot',
+  --         -- schema = {
+  --         --   model = {
+  --         --     default = 'claude-3-7-sonnet-20250219',
+  --         --   },
+  --         -- },
+  --       },
+  --       inline = {
+  --         adapter = 'copilot',
+  --         --   -- schema = {
+  --         --   --   model = {
+  --         --   --     default = 'deepseek-ai/DeepSeek-R1-Distill-Qwen-32B',
+  --         --   --   },
+  --         --   -- },
+  --       },
+  --       cmd = {
+  --         adapter = 'huggingface',
+  --         schema = {
+  --           model = {
+  --             default = 'deepseek-ai/DeepSeek-R1-Distill-Qwen-32B',
+  --           },
+  --         },
+  --       },
+  --     },
+  --     extensions = {
+  --       mcphub = {
+  --         callback = 'mcphub.extensions.codecompanion',
+  --         opts = {
+  --           make_vars = true,
+  --           make_slash_commands = true,
+  --           show_result_in_chat = true,
+  --         },
+  --       },
+  --     },
+  --   },
+  --   dependencies = {
+  --     'ravitemer/mcphub.nvim',
+  --     'nvim-lua/plenary.nvim',
+  --     'nvim-treesitter/nvim-treesitter',
+  --     {
+  --       'zbirenbaum/copilot.lua',
+  --       cmd = 'Copilot',
+  --       event = 'InsertEnter',
+  --       config = function()
+  --         require('copilot').setup {
+  --           filetypes = { ['*'] = true },
+  --           suggestion = {
+  --             keymap = {
+  --               accept = '<C-S-Right>',
+  --               next = '<C-S-Up>',
+  --               prev = '<C-S-Down>',
+  --             },
+  --             auto_trigger = false,
+  --           },
+  --         }
+  --       end,
+  --     },
+  --   },
+  -- },
   {
     'NeogitOrg/neogit',
     dependencies = {

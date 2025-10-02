@@ -4,7 +4,6 @@ return {
     -- optional: provides snippets for the snippet source
     dependencies = {
       'rafamadriz/friendly-snippets',
-      'Exafunction/windsurf.nvim',
       'onsails/lspkind.nvim',
     },
 
