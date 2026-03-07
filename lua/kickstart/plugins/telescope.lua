@@ -38,6 +38,9 @@ return {
       { 'ghassan0/telescope-glyph.nvim' },
     },
     config = function()
+      if not vim.treesitter.ft_to_lang then
+        vim.treesitter.ft_to_lang = vim.treesitter.language.get_lang
+      end
       -- Telescope is a fuzzy finder that comes with a lot of different things that
       -- it can fuzzy find! It's more than just a "file finder", it can search
       -- many different aspects of Neovim, your workspace, LSP, and more!
