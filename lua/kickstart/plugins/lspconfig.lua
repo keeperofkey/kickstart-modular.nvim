@@ -227,6 +227,10 @@ return {
               capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {}),
             }
           end,
+          -- stylua is a formatter, not an LSP server — mason-lspconfig incorrectly lists it
+          ['stylua'] = function() end,
+          -- typescript-tools sets itself up via its own plugin, not lspconfig
+          ['typescript-tools'] = function() end,
         },
       }
     end,
