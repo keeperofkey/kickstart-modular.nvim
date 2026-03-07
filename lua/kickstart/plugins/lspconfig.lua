@@ -6,7 +6,6 @@ return {
     ft = 'lua',
     opts = {
       library = {
-        '~/.config/awesome',
         'lazy.nvim',
         -- Load luvit types when the `vim.uv` word is found
         { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
@@ -152,6 +151,7 @@ return {
         settings = {
           Lua = {
             runtime = { version = 'LuaJIT' },
+            -- lazydev.nvim handles workspace.library, globals, and checkThirdParty
             diagnostics = { disable = { 'missing-fields' } },
           },
         },
