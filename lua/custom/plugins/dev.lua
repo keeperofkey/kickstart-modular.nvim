@@ -3,17 +3,9 @@ return {
   {
     'pmizio/typescript-tools.nvim',
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    ft = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
     opts = {},
   },
-  -- { 'altermo/nwm', branch = 'x11' },
-  -- {
-  --   'iamcco/markdown-preview.nvim',
-  --   cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-  --   ft = { 'markdown' },
-  --   build = function()
-  --     vim.fn['mkdp#util#install']()
-  --   end,
-  -- },
   { 'nvim-tree/nvim-web-devicons' },
   { 'tpope/vim-dadbod' },
   {
@@ -33,7 +25,20 @@ return {
       vim.g.db_ui_use_nerd_fonts = 1
     end,
   },
+  {
+    -- Make sure to set this up properly if you have lazy=true
+    'MeanderingProgrammer/render-markdown.nvim',
+    opts = {
+      file_types = { 'markdown', 'Avante', 'codecompanion' },
+      heading = { icons = { '# ', '## ', '### ', '#### ' } },
+    },
+    ft = { 'markdown', 'Avante', 'codecompanion' },
+  },
+
+  --
   -- ai
+  --
+
   {
     'supermaven-inc/supermaven-nvim',
     config = function()
@@ -163,19 +168,19 @@ return {
   --     },
   --   },
   -- },
-  {
-    'NeogitOrg/neogit',
-    dependencies = {
-      'nvim-lua/plenary.nvim', -- required
-      'sindrets/diffview.nvim', -- optional - Diff integration
-
-      -- Only one of these is needed.
-      'nvim-telescope/telescope.nvim', -- optional
-      -- "ibhagwan/fzf-lua",              -- optional
-      -- "echasnovski/mini.pick",         -- optional
-    },
-    config = true,
-  },
+  -- {
+  --   'NeogitOrg/neogit',
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim', -- required
+  --     'sindrets/diffview.nvim', -- optional - Diff integration
+  --
+  --     -- Only one of these is needed.
+  --     'nvim-telescope/telescope.nvim', -- optional
+  --     -- "ibhagwan/fzf-lua",              -- optional
+  --     -- "echasnovski/mini.pick",         -- optional
+  --   },
+  --   config = true,
+  -- },
   -- {
   --   'yetone/avante.nvim',
   --   event = 'VeryLazy',
@@ -252,13 +257,4 @@ return {
   --     },
   --   },
   -- },
-  {
-    -- Make sure to set this up properly if you have lazy=true
-    'MeanderingProgrammer/render-markdown.nvim',
-    opts = {
-      file_types = { 'markdown', 'Avante', 'codecompanion' },
-      heading = { icons = { '# ', '## ', '### ', '#### ' } },
-    },
-    ft = { 'markdown', 'Avante', 'codecompanion' },
-  },
 }
