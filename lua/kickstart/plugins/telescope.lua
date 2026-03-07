@@ -35,7 +35,6 @@ return {
       -- { 'nvim-telescope/telescope-frecency.nvim' },
       -- { 'nvim-telescope/telescope-project.nvim' },
       { 'benfowler/telescope-luasnip.nvim' },
-      { 'ghassan0/telescope-glyph.nvim' },
     },
     config = function()
       if not vim.treesitter.ft_to_lang then
@@ -107,7 +106,6 @@ return {
       -- pcall(require('telescope').load_extension, 'frecency')
       -- pcall(require('telescope').load_extension, 'project')
       pcall(require('telescope').load_extension, 'luasnip')
-      pcall(require('telescope').load_extension, 'glyph')
 
       -- See `:help telescope.builtin`
       -- Binds
