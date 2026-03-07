@@ -155,7 +155,7 @@ return {
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[F]ind [N]eovim files' })
       vim.keymap.set('n', '<leader>fx', function()
-        builtin.find_files { cwd = '$HOME/.config' }
+        builtin.find_files { cwd = vim.fn.expand '$HOME/.config' }
       end, { desc = '[F]ind [x] config files' })
     end,
   },
