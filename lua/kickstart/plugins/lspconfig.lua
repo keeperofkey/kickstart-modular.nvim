@@ -39,6 +39,11 @@ return {
       -- },
     },
     config = function()
+      -- stylua is a formatter (handled by conform), not an LSP server.
+      -- lspconfig ships lsp/stylua.lua for nvim 0.11+ auto-loading, but stylua --lsp
+      -- is not yet supported in released versions. Disable it explicitly.
+      vim.lsp.config('stylua', { enabled = false })
+
       -- Brief Aside: **What is LSP?**
       --
       -- LSP is an acronym you've probably heard, but might not understand what it is.
