@@ -34,6 +34,11 @@ require 'options'
 -- [[ Basic Keymaps ]]
 require 'keymaps'
 
+-- Disable stylua from being started as an LSP server.
+-- lspconfig ships lsp/stylua.lua for nvim 0.11+ auto-LSP, but stylua --lsp
+-- is not supported in released versions. Formatting is handled by conform.
+vim.lsp.config('stylua', { enabled = false })
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 require 'lazy-bootstrap'
 
