@@ -71,6 +71,21 @@ return {
           --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
           --   },
           initial_mode = 'insert',
+          vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--hidden',
+            '--glob=!.git/*',
+            '--glob=!node_modules/*',
+            '--glob=!dist/*',
+            '--glob=!build/*',
+            '--glob=!.cache/*',
+          },
         },
         -- pickers = {}
         extensions = {
