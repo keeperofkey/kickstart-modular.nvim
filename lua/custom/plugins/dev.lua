@@ -60,7 +60,13 @@ return {
           return false
         end, -- condition to check for stopping supermaven, `true` means to stop supermaven when the condition is true.
       }
-      vim.keymap.set('n', '<M-Space>', '<cmd>SupermavenToggle<cr>', { desc = 'Toggle Supermaven' })
+      vim.keymap.set('i', '<C-a>', function()
+        require('supermaven-nvim.api').toggle()
+        local ns = vim.api.nvim_get_namespaces()['supermaven']
+        if ns then
+          vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
+        end
+      end, { desc = 'Toggle Supermaven' })
     end,
   },
   -- {
