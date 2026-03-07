@@ -9,7 +9,7 @@ return {
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     -- event = 'VeryLazy',
-    branch = '0.1.x',
+    branch = 'master',
     cmd = 'Telescope',
     keys = {
       { '<leader>fh', '<cmd>Telescope help_tags<cr>', desc = '[f]ind [h]elp' },
@@ -59,9 +59,6 @@ return {
       { 'benfowler/telescope-luasnip.nvim' },
     },
     config = function()
-      if not vim.treesitter.ft_to_lang then
-        vim.treesitter.ft_to_lang = vim.treesitter.language.get_lang
-      end
       -- Telescope is a fuzzy finder that comes with a lot of different things that
       -- it can fuzzy find! It's more than just a "file finder", it can search
       -- many different aspects of Neovim, your workspace, LSP, and more!
