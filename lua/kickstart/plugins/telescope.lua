@@ -10,6 +10,28 @@ return {
     'nvim-telescope/telescope.nvim',
     -- event = 'VeryLazy',
     branch = '0.1.x',
+    cmd = 'Telescope',
+    keys = {
+      { '<leader>fh', '<cmd>Telescope help_tags<cr>', desc = '[f]ind [h]elp' },
+      { '<leader>fk', '<cmd>Telescope keymaps<cr>', desc = '[f]ind [k]eymaps' },
+      { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = '[f]ind [f]iles' },
+      { '<leader>fs', '<cmd>Telescope builtin<cr>', desc = '[f]ind [s]elect Telescope' },
+      { '<leader>fw', '<cmd>Telescope grep_string<cr>', desc = '[f]ind current [w]ord' },
+      { '<leader>fg', '<cmd>Telescope live_grep<cr>', desc = '[f]ind by [g]rep' },
+      { '<leader>fd', '<cmd>Telescope diagnostics<cr>', desc = '[f]ind [d]iagnostics' },
+      { '<leader>fr', '<cmd>Telescope resume<cr>', desc = '[f]ind [r]esume' },
+      { '<leader>f.', '<cmd>Telescope oldfiles<cr>', desc = '[f]ind recent files' },
+      { '<leader>fo', '<cmd>Telescope buffers<cr>', desc = '[f]ind [o]pen buffers' },
+      { '<leader>fc', '<cmd>Telescope commands<cr>', desc = '[f]ind [c]ommands' },
+      { '<leader>fz', '<cmd>Telescope spell_suggest<cr>', desc = '[f]ind [z] spelling' },
+      { '<leader>fb', '<cmd>Telescope file_browser path=%:p:h select_buffer=true<cr>', desc = '[f]ile [b]rowser from current buffer' },
+      { '<leader>fB', '<cmd>Telescope file_browser<cr>', desc = '[f]ile [B]rowser CWD' },
+      { '<leader>fl', '<cmd>Telescope luasnip<cr>', desc = '[f]ind [l]uasnips' },
+      { '<leader>/', desc = '[/] Fuzzily search in current buffer' },
+      { '<leader>f/', desc = '[F]ind [/] in Open Files' },
+      { '<leader>fn', desc = '[F]ind [N]eovim files' },
+      { '<leader>fx', desc = '[F]ind [x] config files' },
+    },
     dependencies = {
       'nvim-lua/plenary.nvim',
       { -- If encountering errors, see telescope-fzf-native README for install instructions
@@ -110,23 +132,6 @@ return {
       -- See `:help telescope.builtin`
       -- Binds
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = '[f]ind [h]elp' })
-      vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[f]ind [k]eymaps' })
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[f]ind [f]iles' })
-      vim.keymap.set('n', '<leader>fs', builtin.builtin, { desc = '[f]ind [s]elect Telescope' })
-      vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = '[f]ind current [w]ord' })
-      vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = '[f]ind by [g]rep' })
-      vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[f]ind [d]iagnostics' })
-      vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = '[f]ind [r]esume' })
-      vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = '[f]ind recent files ("." for repeat)' })
-      vim.keymap.set('n', '<leader>fo', builtin.buffers, { desc = '[f]ind [o]pen buffers' })
-      vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = '[f]ind [c]ommands' })
-      vim.keymap.set('n', '<leader>fz', builtin.spell_suggest, { desc = '[f]ind [z] spelling suggestions' })
-      vim.keymap.set('n', '<leader>fb', ':Telescope file_browser path=%:p:h select_buffer=true<CR>', { desc = '[f]ile [b]rowser from current buffer' })
-      vim.keymap.set('n', '<leader>fB', ':Telescope file_browser<CR>', { desc = '[f]ile [B]rowser CWD' })
-      -- vim.keymap.set('n', '<leader>fp', ':lua require("telescope").extensions.project.project{}<CR>', { desc = '[f]ind [p]rojects CWD' })
-      -- vim.keymap.set('n', '<leader>fF', ':Telescope frecency<CR>', { desc = '[f]ind [F]recency' })
-      vim.keymap.set('n', '<leader>fl', ':Telescope luasnip<CR>', { desc = '[f]ind [l]uasnips' })
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to telescope to change theme, layout, etc.
