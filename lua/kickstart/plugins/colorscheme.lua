@@ -1,3 +1,33 @@
+-- Parse colors from xrdb (Xresources)
+local function xresource(key)
+  local handle = io.popen('xrdb -query 2>/dev/null | grep "\\*\\.' .. key .. ':" | head -1')
+  if not handle then return nil end
+  local result = handle:read('*a')
+  handle:close()
+  local color = result:match('#%x+')
+  return color
+end
+
+-- Fallback colors matching ~/.Xresources defaults
+local colors = {
+  base00 = xresource('color0') or '#0c0d0f',
+  base01 = '#23262b',
+  base02 = '#504945',
+  base03 = xresource('color8') or '#515863',
+  base04 = '#bdae93',
+  base05 = xresource('foreground') or '#c9cdd1',
+  base06 = '#ebdbb2',
+  base07 = xresource('color15') or '#f2f3f4',
+  base08 = xresource('color1') or '#fb4934',
+  base09 = '#fe8019',
+  base0A = xresource('color3') or '#fabd2f',
+  base0B = xresource('color2') or '#b8bb26',
+  base0C = xresource('color6') or '#8ec07c',
+  base0D = xresource('color4') or '#59a1c6',
+  base0E = xresource('color5') or '#be86d3',
+  base0F = '#d65d0e',
+}
+
 return {
   {
     'norcalli/nvim-colorizer.lua',
@@ -5,177 +35,35 @@ return {
       require('colorizer').setup()
     end,
   },
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
-    'ellisonleao/gruvbox.nvim',
-    -- 'folke/tokyonight.nvim',
-    -- 'olimorris/onedarkpro.nvim',
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
+  {
+    'RRethy/base16-nvim',
+    lazy = false,
+    priority = 1000,
     config = function()
-      -- require('onedarkpro').setup {
-      --   colors = {
-      --     fg = '#eeeee0',
-      --   },
-      --
-      --   options = {
-      --     transparency = true,
-      --   },
-      -- }
-      -- vim.cmd.colorscheme 'onedark'
-      --   -- Load the colorscheme here
-      require('gruvbox').setup {
-        transparent_mode = true,
-        palette_overrides = {
-          -- Defaults
-          dark0_hard = '#0c0d0f',
-          -- dark0 = '#282828',
-          -- dark0_soft = '#32302f',
-          dark1 = '#23262b',
-          -- dark2 = '#3a3f47',
-          dark3 = '#515863',
-          -- dark4 = '#68717f',
-          light0_hard = '#f2f3f4',
-          -- light0 = '#fbf1c7',
-          -- light0_soft = '#f2e5bc',
-          light1 = '#bbc0c5',
-          -- light2 = '#d6dadd',
-          light3 = '#c9cdd1',
-          -- light4 = '#bbc0c5',
-          -- bright_red = '#e76f51',
-          -- bright_green = '#606c38',
-          -- bright_yellow = '#fcbf49',
-          bright_blue = '#59a1c6',
-          bright_purple = '#a04edf',
-          -- bright_aqua = '#8ec07c',
-          -- bright_orange = '#f77f00',
-          -- neutral_red = '#cf401d',
-          -- neutral_green = '#283618',
-          -- neutral_yellow = '#ffb703',
-          -- neutral_blue = '#023047',
-          neutral_purple = '#be86d3',
-          -- neutral_aqua = '#689d6a',
-          -- neutral_orange = '#fb8500',
-          -- faded_red = '#f0a794',
-          -- faded_green = '#363518',
-          -- faded_yellow = '#b57614',
-          -- faded_blue = '#076678',
-          -- faded_purple = '#8f3f71',
-          -- faded_aqua = '#427b58',
-          -- faded_orange = '#af3a03',
-          -- dark_red_hard = '#8c2b14',
-          -- dark_red = '#722529',
-          -- dark_red_soft = '#7b2c2f',
-          light_red_hard = '#f9ded7',
-          light_red = '#fc9487',
-          light_red_soft = '#f78b7f',
-          -- dark_green_hard = '#193618',
-          -- dark_green = '#62693e',
-          -- dark_green_soft = '#686d43',
-          -- light_green_hard = '#4f6b30',
-          -- light_green = '#d5d39b',
-          -- light_green_soft = '#cecb94',
-          -- dark_aqua_hard = '#689b9d',
-          -- dark_aqua = '#49503b',
-          -- dark_aqua_soft = '#525742',
-          -- light_aqua_hard = '#689d85',
-          -- light_aqua = '#e8e5b5',
-          -- light_aqua_soft = '#e1dbac',
-          --  dark0_hard = "#1d2021",
-          -- dark0 = "#282828",
-          -- dark0_soft = "#32302f",
-          -- dark1 = "#3c3836",
-          -- dark2 = "#504945",
-          -- dark3 = "#665c54",
-          -- dark4 = "#7c6f64",
-          -- light0_hard = "#f9f5d7",
-          -- light0 = "#fbf1c7",
-          -- light0_soft = "#f2e5bc",
-          -- light1 = "#ebdbb2",
-          -- light2 = "#d5c4a1",
-          -- light3 = "#bdae93",
-          -- light4 = "#a89984",
-          -- bright_red = "#fb4934",
-          -- bright_green = "#b8bb26",
-          -- bright_yellow = "#fabd2f",
-          -- bright_blue = "#83a598",
-          -- bright_purple = "#d3869b",
-          -- bright_aqua = "#8ec07c",
-          -- bright_orange = "#fe8019",
-          -- neutral_red = "#cc241d",
-          -- neutral_green = "#98971a",
-          -- neutral_yellow = "#d79921",
-          -- neutral_blue = "#458588",
-          -- neutral_purple = "#b16286",
-          -- neutral_aqua = "#689d6a",
-          -- neutral_orange = "#d65d0e",
-          -- faded_red = "#9d0006",
-          -- faded_green = "#79740e",
-          -- faded_yellow = "#b57614",
-          -- faded_blue = "#076678",
-          -- faded_purple = "#8f3f71",
-          -- faded_aqua = "#427b58",
-          -- faded_orange = "#af3a03",
-          -- dark_red_hard = "#792329",
-          -- dark_red = "#722529",
-          -- dark_red_soft = "#7b2c2f",
-          -- light_red_hard = "#fc9690",
-          -- light_red = "#fc9487",
-          -- light_red_soft = "#f78b7f",
-          -- dark_green_hard = "#5a633a",
-          -- dark_green = "#62693e",
-          -- dark_green_soft = "#686d43",
-          -- light_green_hard = "#d3d6a5",
-          -- light_green = "#d5d39b",
-          -- light_green_soft = "#cecb94",
-          -- dark_aqua_hard = "#3e4934",
-          -- dark_aqua = "#49503b",
-          -- dark_aqua_soft = "#525742",
-          -- light_aqua_hard = "#e6e9c1",
-          -- light_aqua = "#e8e5b5",
-          -- light_aqua_soft = "#e1dbac",
-          -- gray = "#928374",
-          gray = '#9da4b1',
-        },
-        overrides = {
-          --Highlights
-          -- Normal = { bg = 'none' },
-          StatusLine = { bg = 'none' },
-          StatusLineNC = { bg = '#23262b' },
-          TabLine = { bg = 'none' },
-          TabLineFill = { bg = 'none' },
-          TabLineSel = { bg = 'none' },
-          CursorLine = { bg = '#23262b' },
-          -- CursorLineNr = { bg = 'none' },
-          Pmenu = { bg = 'none' },
-          PmenuSel = { bg = 'none', fg = '#fabd2f', bold = true },
-          -- BlinkCmpMenuBorder = { bg = '#ebdbb2', fg = '#fabd2f' },
-          -- BlinkCmpDocBorder = { bg = '#ebdd38bb2', fg = '#fabd2f' },
-          -- Comment = { bg = 'none', fg = '#9da4b1' },
-          NotificationInfo = { bg = 'none' },
-          DiffAdd = { bg = 'none', fg = '#b8bb26' },
-          DiffChange = { bg = 'none', fg = '#fabd2f' },
-          DiffDelete = { bg = 'none', fg = '#9d0006' },
-          DiffText = { bg = 'none', fg = '#f2f3f4' },
-          FlashMatch = { bg = '#b8bb26', fg = '#fffff0' },
-          FlashLabel = { bg = '#bbc0c5', fg = '#fffff0', bold = true, italic = true },
-        },
-        contrast = 'hard',
-      }
-      vim.cmd.colorscheme 'gruvbox'
-      -- require('tokyonight').setup { transparent = true }
-      -- vim.cmd.colorscheme 'tokyonight'
-      --   -- You can configure highlights by doing something like
-      vim.cmd.hi 'Comment guifg=none'
+      vim.opt.termguicolors = true
+      require('base16-colorscheme').setup(colors)
+
+      -- Transparency and highlight overrides (preserved from gruvbox config)
+      local hi = vim.api.nvim_set_hl
+      hi(0, 'Normal', { bg = 'none' })
+      hi(0, 'NormalFloat', { bg = 'none' })
+      hi(0, 'StatusLine', { bg = 'none' })
+      hi(0, 'StatusLineNC', { bg = colors.base01 })
+      hi(0, 'TabLine', { bg = 'none' })
+      hi(0, 'TabLineFill', { bg = 'none' })
+      hi(0, 'TabLineSel', { bg = 'none' })
+      hi(0, 'CursorLine', { bg = colors.base01 })
+      hi(0, 'Pmenu', { bg = 'none' })
+      hi(0, 'PmenuSel', { bg = 'none', fg = colors.base0A, bold = true })
+      hi(0, 'NotificationInfo', { bg = 'none' })
+      hi(0, 'DiffAdd', { bg = 'none', fg = colors.base0B })
+      hi(0, 'DiffChange', { bg = 'none', fg = colors.base0A })
+      hi(0, 'DiffDelete', { bg = 'none', fg = '#9d0006' })
+      hi(0, 'DiffText', { bg = 'none', fg = colors.base07 })
+      hi(0, 'FlashMatch', { bg = colors.base0B, fg = '#fffff0' })
+      hi(0, 'FlashLabel', { bg = '#bbc0c5', fg = '#fffff0', bold = true, italic = true })
+      hi(0, 'Comment', { fg = colors.base03, italic = true })
     end,
-    -- opts = { transparent = true },
   },
-  -- {
-  --   priority = 1000, -- Ensure it loads first
-  --   opts = { transparency = true },
-  -- },
 }
 -- vim: ts=2 sts=2 sw=2 et

@@ -5,8 +5,7 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons', 'arkav/lualine-lsp-progress' },
     opts = function()
       local lualine = require 'lualine'
-      local custom_gruv = require 'lualine.themes.gruvbox'
-      -- custom_gruv.normal.c.bg = 'none'
+      -- theme is set in lazy-plugins.lua via c_auto
       local function cmd_messege()
         return vim.cmd.messages(1)
       end
@@ -36,7 +35,7 @@ return {
 
       return {
         options = {
-          theme = 'gruvbox',
+          theme = 'base16',
           component_separators = { left = '', right = '' },
           section_separators = { left = '', right = '' },
         },
