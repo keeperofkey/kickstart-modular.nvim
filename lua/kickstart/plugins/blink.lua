@@ -5,6 +5,7 @@ return {
     dependencies = {
       'rafamadriz/friendly-snippets',
       'onsails/lspkind.nvim',
+      { 'L3MON4D3/LuaSnip', version = 'v2.*' },
     },
 
     -- use a release tag to download pre-built binaries
@@ -17,6 +18,8 @@ return {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
+      snippets = { preset = 'luasnip' },
+
       -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
       -- 'super-tab' for mappings similar to vscode (tab to accept)
       -- 'enter' for enter to accept
@@ -29,7 +32,7 @@ return {
       -- C-k: Toggle signature help (if signature.enabled = true)
       --
       -- See :h blink-cmp-config-keymap for defining your own keymap
-      keymap = { preset = 'default', ['<C-u'] = { 'scroll_documentation_up' }, ['<C-d'] = { 'scroll_documentation_down' } },
+      keymap = { preset = 'default', ['<C-u>'] = { 'scroll_documentation_up' }, ['<C-d>'] = { 'scroll_documentation_down' } },
 
       appearance = {
         -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'

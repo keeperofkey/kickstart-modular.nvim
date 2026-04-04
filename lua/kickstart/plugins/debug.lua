@@ -7,9 +7,17 @@
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 
 return {
-  -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
-  -- NOTE: And you can specify dependencies as well
+  keys = {
+    { '<F5>',      desc = 'Debug: Start/Continue' },
+    { '<F6>',      desc = 'Debug: Pause' },
+    { '<F1>',      desc = 'Debug: Step Into' },
+    { '<F2>',      desc = 'Debug: Step Over' },
+    { '<F3>',      desc = 'Debug: Step Out' },
+    { '<F7>',      desc = 'Debug: See last session result' },
+    { '<leader>b', desc = 'Debug: Toggle Breakpoint' },
+    { '<leader>B', desc = 'Debug: Set Breakpoint' },
+  },
   dependencies = {
     -- Creates a beautiful debugger UI
     'rcarriga/nvim-dap-ui',
@@ -20,7 +28,7 @@ return {
 
     -- Add your own debuggers here
     'leoluz/nvim-dap-go',
-    'mfussenegger/nvim-dap-python',
+    -- 'mfussenegger/nvim-dap-python',
     -- 'mxsdev/nvim-dap-vscode-js',
   },
   config = function()
@@ -40,12 +48,14 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'codelldb',
         -- 'js-debug-adapter',
       },
     }
 
     -- Basic debugging keymaps, feel free to change to your liking!
     vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })
+    vim.keymap.set('n', '<F6>', dap.pause,    { desc = 'Debug: Pause (shows call stack while running)' })
     vim.keymap.set('n', '<F1>', dap.step_into, { desc = 'Debug: Step Into' })
     vim.keymap.set('n', '<F2>', dap.step_over, { desc = 'Debug: Step Over' })
     vim.keymap.set('n', '<F3>', dap.step_out, { desc = 'Debug: Step Out' })
@@ -57,11 +67,10 @@ return {
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
     dapui.setup {
-      -- Set icons to characters that are more likely to work in every terminal.
-      --    Feel free to remove or use ones that you like more! :)
-      --    Don't feel like these are good choices.
       icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
       controls = {
+        enabled = true,
+        element = 'repl', -- show the controls toolbar inside the repl panel
         icons = {
           pause = '⏸',
           play = '▶',
@@ -74,7 +83,36 @@ return {
           disconnect = '⏏',
         },
       },
+      -- Layout tuned for Unreal Engine C++ debugging:
+      --   Left sidebar  – scopes (variable inspector), call stack, watches
+      --   Bottom tray   – console (UE log output lands here), REPL for LLDB commands
+      layouts = {
+        {
+          elements = {
+            { id = 'scopes',  size = 0.50 }, -- locals / UE object members
+            { id = 'stacks',  size = 0.35 }, -- deep UE call chains need decent height
+            { id = 'watches', size = 0.15 }, -- pin GEngine, GWorld, specific actors
+          },
+          size = 55, -- columns
+          position = 'left',
+        },
+        {
+          elements = {
+            { id = 'console', size = 0.65 }, -- UE LogOutput streams here
+            { id = 'repl',    size = 0.35 }, -- LLDB expression/command input
+          },
+          size = 14, -- rows
+          position = 'bottom',
+        },
+      },
     }
+
+    -- DAP sign icons with highlight groups (without these, signs render blank/wrong colour)
+    vim.fn.sign_define('DapBreakpoint',          { text = '●', texthl = 'DiagnosticError', linehl = '',       numhl = '' })
+    vim.fn.sign_define('DapBreakpointCondition', { text = '◆', texthl = 'DiagnosticWarn',  linehl = '',       numhl = '' })
+    vim.fn.sign_define('DapBreakpointRejected',  { text = '●', texthl = 'DiagnosticHint',  linehl = '',       numhl = '' })
+    vim.fn.sign_define('DapLogPoint',            { text = '◆', texthl = 'DiagnosticInfo',  linehl = '',       numhl = '' })
+    vim.fn.sign_define('DapStopped',             { text = '→', texthl = 'DiagnosticWarn',  linehl = 'Visual', numhl = 'DiagnosticWarn' })
 
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
@@ -83,9 +121,116 @@ return {
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
+    -- C++ adapter via codelldb (installed by mason)
+    dap.adapters.codelldb = {
+      type = 'server',
+      port = '${port}',
+      executable = {
+        command = vim.fn.stdpath 'data' .. '/mason/bin/codelldb.cmd',
+        args = { '--port', '${port}' },
+      },
+    }
+
+    -- Returns cached engine path, or auto-detects from Program Files, then prompts.
+    -- Mirrors the logic in custom/plugins/unreal.lua so DAP configs work without
+    -- needing to run a UE command first.
+    local function ue_engine_path()
+      if vim.g.ue_engine_path and vim.g.ue_engine_path ~= '' then
+        return vim.g.ue_engine_path
+      end
+      local versions = vim.fn.glob('C:/Program Files/Epic Games/UE_*', false, true)
+      local default = #versions > 0 and versions[#versions] or 'C:/Program Files/Epic Games/UE_5.5'
+      local path = vim.fn.input('UE Engine path: ', default, 'dir')
+      if path == '' then return nil end
+      vim.g.ue_engine_path = path
+      return path
+    end
+
+    -- Walks up from cwd looking for a .uproject (handles opening nvim from a subdir).
+    local function find_uproject()
+      local dir = vim.fn.getcwd()
+      for _ = 1, 6 do
+        local hits = vim.fn.glob(dir .. '/*.uproject', false, true)
+        if #hits > 0 then return hits[1] end
+        local parent = vim.fn.fnamemodify(dir, ':h')
+        if parent == dir then break end
+        dir = parent
+      end
+      return ''
+    end
+
+    -- Unreal Engine C++ debug configurations
+    dap.configurations.cpp = {
+      {
+        name = 'UE: Attach to Editor',
+        type = 'codelldb',
+        request = 'attach',
+        pid = function()
+          return require('dap.utils').pick_process()
+        end,
+        stopOnEntry = false,
+        -- Without this, stopping the debug session kills the UE editor process.
+        detachOnTerminate = true,
+        -- Native LLDB expression evaluator: no Python overhead, better UE type support.
+        expressions = 'native',
+        -- UE loads thousands of DLLs; attach causes LLDB to enumerate all of them
+        -- at once, flooding codelldb's bounded event channel and dropping key events
+        -- (stopped/threads/stackTrace). These commands reduce the noise somewhat.
+        -- If Full(..) errors persist, run :MasonUpdate to get a newer codelldb with
+        -- a larger channel buffer. Prefer the Launch config where possible.
+        initCommands = {
+          'settings set target.process.stop-on-exec false',
+          'settings set symbols.enable-external-lookup false',
+          'settings set target.preload-symbols false', -- defer symbol loading until needed; big speedup for UE's hundreds of DLLs
+        },
+      },
+      {
+        name = 'UE: Launch Editor (DebugGame)',
+        type = 'codelldb',
+        request = 'launch',
+        program = function()
+          local engine = ue_engine_path()
+          if not engine then return vim.fn.input('UnrealEditor.exe path: ', '', 'file') end
+          return vim.fn.input('UnrealEditor.exe path: ', engine .. '/Engine/Binaries/Win64/UnrealEditor.exe', 'file')
+        end,
+        args = function()
+          local uproject = find_uproject()
+          if uproject == '' then
+            uproject = vim.fn.input('.uproject path: ', '', 'file')
+          end
+          return { uproject, '-log' }
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        expressions = 'native',
+        initCommands = {
+          'settings set symbols.enable-external-lookup false',
+          'settings set target.preload-symbols false',
+        },
+      },
+      {
+        name = 'UE: Launch Standalone Game (DebugGame)',
+        type = 'codelldb',
+        request = 'launch',
+        program = function()
+          local uproject = find_uproject()
+          local proj_dir = uproject ~= '' and vim.fn.fnamemodify(uproject, ':h') or vim.fn.getcwd()
+          return vim.fn.input('Game .exe path: ', proj_dir .. '/Binaries/Win64/', 'file')
+        end,
+        args = { '-log' },
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        expressions = 'native',
+        initCommands = {
+          'settings set symbols.enable-external-lookup false',
+          'settings set target.preload-symbols false',
+        },
+      },
+    }
+
     -- Install golang specific config
     require('dap-go').setup()
-    require('dap-python').setup '~/.virtualenvs/debugpy/bin/python'
+    -- require('dap-python').setup '~/.virtualenvs/debugpy/bin/python'
     -- require('dap-vscode-js').setup {
     --   -- node_path = "node", -- Path of node executable. Defaults to $NODE_PATH, and then "node"
     --   -- debugger_path = '~/.local/share/nvim/lazy/vscode-js-debug/src/dapDebugServer.ts',

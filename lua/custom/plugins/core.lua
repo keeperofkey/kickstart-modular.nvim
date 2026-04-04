@@ -59,54 +59,6 @@ return {
       -- words = { enabled = true },-- needs to be config
     },
   },
-  -- {
-  --   'folke/flash.nvim',
-  --   event = 'VeryLazy',
-  --   ---@type Flash.Config
-  --   opts = { modes = { search = { enabled = true } } },
-  --   keys = {
-  --     {
-  --       's',
-  --       mode = { 'n', 'x', 'o' },
-  --       function()
-  --         require('flash').jump()
-  --       end,
-  --       desc = 'Flash',
-  --     },
-  --     {
-  --       'S',
-  --       mode = { 'n', 'x', 'o' },
-  --       function()
-  --         require('flash').treesitter()
-  --       end,
-  --       desc = 'Flash Treesitter',
-  --     },
-  --     {
-  --       'r',
-  --       mode = 'o',
-  --       function()
-  --         require('flash').remote()
-  --       end,
-  --       desc = 'Remote Flash',
-  --     },
-  --     {
-  --       'R',
-  --       mode = { 'o', 'x' },
-  --       function()
-  --         require('flash').treesitter_search()
-  --       end,
-  --       desc = 'Treesitter Search',
-  --     },
-  --     {
-  --       '<c-s>',
-  --       mode = { 'c' },
-  --       function()
-  --         require('flash').toggle()
-  --       end,
-  --       desc = 'Toggle Flash Search',
-  --     },
-  --   },
-  -- },
   {
     'folke/persistence.nvim',
     event = 'BufReadPre', -- this will only start session saving when an actual file was opened
@@ -128,7 +80,6 @@ return {
         override = {
           ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
           ['vim.lsp.util.stylize_markdown'] = true,
-          ['cmp.entry.get_documentation'] = true, -- requires hrsh7th/nvim-cmp
         },
       },
       -- you can enable a preset for easier configuration

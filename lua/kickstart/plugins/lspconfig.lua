@@ -16,6 +16,9 @@ return {
     'neovim/nvim-lspconfig',
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
+      -- Ensure lazydev initializes before lua_ls can attach (avoids race condition
+      -- where lua_ls attaches before lazydev sends its workspace library paths)
+      'folke/lazydev.nvim',
       -- Automatically install LSPs and related tools to stdpath for neovim
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
