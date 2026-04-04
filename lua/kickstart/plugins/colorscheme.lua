@@ -43,23 +43,41 @@ return {
       vim.opt.termguicolors = true
       require('base16-colorscheme').setup(colors)
 
-      -- Transparency and highlight overrides (preserved from gruvbox config)
+      -- Transparency overrides (bg = nil inherits terminal background)
       local hi = vim.api.nvim_set_hl
-      hi(0, 'Normal', { bg = 'none' })
-      hi(0, 'NormalFloat', { bg = 'none' })
-      hi(0, 'StatusLine', { bg = 'none' })
+
+      -- Main editor transparency
+      hi(0, 'Normal', { fg = colors.base05, bg = nil })
+      hi(0, 'NormalNC', { link = 'Normal' })
+      hi(0, 'NormalFloat', { fg = colors.base05, bg = nil })
+      hi(0, 'SignColumn', { bg = nil })
+      hi(0, 'LineNr', { fg = colors.base03, bg = nil })
+      hi(0, 'CursorLineNr', { fg = colors.base05, bg = colors.base01 })
+      hi(0, 'FoldColumn', { fg = colors.base03, bg = nil })
+      hi(0, 'WinSeparator', { fg = colors.base03, bg = nil })
+      hi(0, 'StatusLine', { bg = nil })
       hi(0, 'StatusLineNC', { bg = colors.base01 })
-      hi(0, 'TabLine', { bg = 'none' })
-      hi(0, 'TabLineFill', { bg = 'none' })
-      hi(0, 'TabLineSel', { bg = 'none' })
+      hi(0, 'TabLine', { bg = nil })
+      hi(0, 'TabLineFill', { bg = nil })
+      hi(0, 'TabLineSel', { bg = nil })
       hi(0, 'CursorLine', { bg = colors.base01 })
-      hi(0, 'Pmenu', { bg = 'none' })
-      hi(0, 'PmenuSel', { bg = 'none', fg = colors.base0A, bold = true })
-      hi(0, 'NotificationInfo', { bg = 'none' })
-      hi(0, 'DiffAdd', { bg = 'none', fg = colors.base0B })
-      hi(0, 'DiffChange', { bg = 'none', fg = colors.base0A })
-      hi(0, 'DiffDelete', { bg = 'none', fg = '#9d0006' })
-      hi(0, 'DiffText', { bg = 'none', fg = colors.base07 })
+      hi(0, 'FloatBorder', { fg = colors.base03, bg = nil })
+      hi(0, 'FloatTitle', { fg = colors.base0D, bg = nil, bold = true })
+
+      -- Popup menu (completion)
+      hi(0, 'Pmenu', { fg = colors.base05, bg = colors.base02 })
+      hi(0, 'PmenuSel', { fg = colors.base0A, bg = colors.base02, bold = true })
+      hi(0, 'PmenuSbar', { bg = colors.base02 })
+      hi(0, 'PmenuThumb', { bg = colors.base03 })
+
+      -- Diffs
+      hi(0, 'NotificationInfo', { bg = nil })
+      hi(0, 'DiffAdd', { bg = nil, fg = colors.base0B })
+      hi(0, 'DiffChange', { bg = nil, fg = colors.base0A })
+      hi(0, 'DiffDelete', { bg = nil, fg = '#9d0006' })
+      hi(0, 'DiffText', { bg = nil, fg = colors.base07 })
+
+      -- Misc
       hi(0, 'FlashMatch', { bg = colors.base0B, fg = '#fffff0' })
       hi(0, 'FlashLabel', { bg = '#bbc0c5', fg = '#fffff0', bold = true, italic = true })
       hi(0, 'Comment', { fg = colors.base03, italic = true })
