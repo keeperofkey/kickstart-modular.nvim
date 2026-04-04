@@ -12,16 +12,10 @@ return {
         -- Conform can also run multiple formatters sequentially
         python = { 'isort', 'black' },
         markdown = { 'mdformat' },
-        -- You can use a sub-list to tell conform to run *until* a formatter
-        -- is found.
-        -- javascript = { { 'prettierd', 'prettier' } },
-        -- typescript = { { 'prettierd', 'prettier' } },
-        typescript = { 'biome', 'ast_grep', 'ts_standard' },
-        javascript = { 'biome', 'ast_grep' },
-        json = { 'biome', 'ast_grep' },
-        svelte = { 'biome', 'ast_grep' },
-        html = { 'ast_grep' },
-        css = { 'ast_grep' },
+        typescript = { 'biome' },
+        javascript = { 'biome' },
+        json = { 'biome' },
+        svelte = { 'biome' },
       },
     },
   },

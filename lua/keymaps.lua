@@ -4,16 +4,6 @@
 -- vim.keymap.set('n', '<leader>m', function()
 --   require('mini.sessions').select()
 -- end, { desc = 'Open Session [m]enu' })
--- Code & AI
-vim.keymap.set('n', '<leader>cc', ':CodeCompanionChat<CR>', { desc = 'Open [C]ode [C]hat' })
-vim.keymap.set('n', '<leader>ca', ':CodeCompanionActions<CR>', { desc = 'Open [C]ode [A]ctions' })
-vim.keymap.set('n', '<leader>cx', ':CodeCompanionCmd<CR>', { desc = 'Open [C]ode [X] command' })
-vim.keymap.set('n', '<leader>cs', ':Copilot suggestion toggle_auto_trigger<CR>', { desc = 'Toggle [C]ode [S]uggestiion' })
-
-vim.keymap.set('n', '<leader>cw', function()
-  require('codeium.virtual_text').cycle_or_complete()
-end, { desc = '[C]ode [w]indsurf' })
-
 -- load the session for the current directory
 vim.keymap.set('n', '<leader>sl', function()
   require('persistence').load()

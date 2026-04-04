@@ -2,7 +2,7 @@ return {
 
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons', 'arkav/lualine-lsp-progress' },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = function()
       local lualine = require 'lualine'
       -- theme is set in lazy-plugins.lua via c_auto
@@ -59,7 +59,6 @@ return {
               fmt = show_macro_recording,
             },
             cmd_messege,
-            'lsp_progress',
           },
           lualine_x = { 'filetype' },
           lualine_y = { 'location' },

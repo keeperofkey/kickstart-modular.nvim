@@ -47,7 +47,7 @@ return {
       -- indent = { enabled = true },
       -- input = { enabled = true },-- needs to be config
       -- picker = { enabled = true },-- needs to be config
-      -- notifier = { enabled = true },-- needs to be config
+      notifier = { enabled = true, top_down = true },
       -- quickfile = { enabled = true },-- needs to be config
       -- scope = { enabled = true },-- needs to be config
       -- scroll = {
@@ -95,20 +95,6 @@ return {
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       'MunifTanjim/nui.nvim',
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      {
-        'rcarriga/nvim-notify',
-        config = function()
-          require('notify').setup {
-            timeout = 5000,
-            stages = 'static',
-            render = 'wrapped-compact',
-            background_colour = '#000000',
-          }
-        end,
-      },
     },
   },
   {

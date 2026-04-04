@@ -180,9 +180,9 @@ return {
       }
 
       require('mason-lspconfig').setup {
-        ensure_installed = { 'lua_ls', 'pyright', 'clangd', 'bashls' },
+        ensure_installed = { 'lua_ls', 'pyright', 'clangd', 'bashls', 'ts_ls' },
         automatic_enable = {
-          exclude = { 'stylua', 'typescript-tools' },
+          exclude = { 'stylua' },
         },
       }
     end,

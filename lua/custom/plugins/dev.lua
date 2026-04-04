@@ -1,14 +1,6 @@
 return {
 
   {
-    'pmizio/typescript-tools.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-    ft = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
-    opts = {},
-  },
-  { 'nvim-tree/nvim-web-devicons' },
-  { 'tpope/vim-dadbod' },
-  {
     'kristijanhusak/vim-dadbod-ui',
     dependencies = {
       { 'tpope/vim-dadbod', lazy = true },
