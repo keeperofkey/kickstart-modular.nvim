@@ -89,6 +89,8 @@ return {
         hi(0, 'PmenuSel', { fg = colors.base0A, bg = colors.base02, bold = true })
         hi(0, 'PmenuSbar', { bg = colors.base02 })
         hi(0, 'PmenuThumb', { bg = colors.base03 })
+        hi(0, 'PmenuKind', { fg = colors.base05 })
+        hi(0, 'PmenuKindSel', { fg = colors.base0A })
 
         -- Telescope
         hi(0, 'TelescopeNormal', { link = 'NormalFloat' })
@@ -112,6 +114,17 @@ return {
         hi(0, 'DiffChange', { fg = colors.base0A })
         hi(0, 'DiffDelete', { fg = '#9d0006' })
         hi(0, 'DiffText', { fg = colors.base07 })
+
+        -- Blink completion
+        hi(0, 'BlinkCmpMenu', { link = 'NormalFloat' })
+        hi(0, 'BlinkCmpMenuBorder', { link = 'FloatBorder' })
+        hi(0, 'BlinkCmpMenuSelection', { fg = colors.base0A, bold = true })
+        hi(0, 'BlinkCmpDoc', { link = 'NormalFloat' })
+        hi(0, 'BlinkCmpDocBorder', { link = 'FloatBorder' })
+        hi(0, 'BlinkCmpDocSeparator', { link = 'FloatBorder' })
+        hi(0, 'BlinkCmpLabel', { fg = colors.base05 })
+        hi(0, 'BlinkCmpLabelMatch', { fg = colors.base0A, bold = true })
+        hi(0, 'BlinkCmpLabelDeprecated', { fg = colors.base03, strikethrough = true })
 
         -- Misc
         hi(0, 'FlashMatch', { bg = colors.base0B, fg = '#fffff0' })
