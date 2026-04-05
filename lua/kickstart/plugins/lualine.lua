@@ -5,7 +5,15 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = function()
       local lualine = require 'lualine'
-      -- theme is set in lazy-plugins.lua via c_auto
+      local none = 'none'
+      local c_auto = {
+        normal   = { a = { fg = '#689d6a', bg = none, gui = 'bold' }, b = { fg = '#a89984', bg = none }, c = { fg = '#a89984', bg = none } },
+        insert   = { a = { fg = '#458588', bg = none, gui = 'bold' }, b = { fg = '#a89984', bg = none }, c = { fg = '#a89984', bg = none } },
+        visual   = { a = { fg = '#d79921', bg = none, gui = 'bold' }, b = { fg = '#a89984', bg = none }, c = { fg = '#a89984', bg = none } },
+        replace  = { a = { fg = '#cc241d', bg = none, gui = 'bold' }, b = { fg = '#a89984', bg = none }, c = { fg = '#a89984', bg = none } },
+        command  = { a = { fg = '#d65d0e', bg = none, gui = 'bold' }, b = { fg = '#a89984', bg = none }, c = { fg = '#a89984', bg = none } },
+        inactive = { a = { fg = '#928374', bg = none }, b = { fg = '#928374', bg = none }, c = { fg = '#928374', bg = none } },
+      }
       local function cmd_messege()
         return vim.cmd.messages(1)
       end
@@ -35,7 +43,7 @@ return {
 
       return {
         options = {
-          theme = 'base16',
+          theme = c_auto,
           component_separators = { left = '', right = '' },
           section_separators = { left = '', right = '' },
         },
