@@ -21,12 +21,12 @@ local colors = {
   base06 = '#ebdbb2',
   base07 = xresource 'color15' or '#f2f3f4',
   base08 = xresource 'color1' or '#fb4934',
-  base09 = '#fe8019',
+  base09 = xresource 'color5' or '#be86d3',
   base0A = xresource 'color3' or '#fabd2f',
   base0B = xresource 'color2' or '#b8bb26',
   base0C = xresource 'color6' or '#8ec07c',
   base0D = xresource 'color4' or '#59a1c6',
-  base0E = xresource 'color5' or '#be86d3',
+  base0E = '#fe8019',
   base0F = '#d65d0e',
 }
 
@@ -105,7 +105,7 @@ return {
         hi(0, 'TelescopePreviewBorder', { link = 'FloatBorder' })
         hi(0, 'TelescopeResultsNormal', { link = 'NormalFloat' })
         hi(0, 'TelescopeResultsBorder', { link = 'FloatBorder' })
-        hi(0, 'TelescopeSelection', { fg = colors.base05, bg = colors.base01 })
+        hi(0, 'TelescopeSelection', { bg = colors.base01 })
         hi(0, 'TelescopeMatching', { fg = colors.base0A, bold = true })
 
         -- Diffs

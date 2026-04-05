@@ -72,4 +72,13 @@ vim.opt.scrolloff = 10
 -- Auto change dir
 vim.opt.autochdir = false
 
+vim.diagnostic.config({
+  float = {
+    border = 'rounded',
+    source = true,
+    header = '',
+    prefix = '',
+  },
+})
+
 -- vim: ts=2 sts=2 sw=2 et
