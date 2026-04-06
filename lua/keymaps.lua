@@ -65,9 +65,13 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagn
 vim.keymap.set('n', '[e', function() vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR }) end, { desc = 'Previous [E]rror' })
 vim.keymap.set('n', ']e', function() vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR }) end, { desc = 'Next [E]rror' })
 vim.keymap.set('n', '<leader>e', function()
-  local float = vim.diagnostic.open_float({ focusable = true })
-  if float then
-    vim.api.nvim_set_current_win(float)
+  local winid = vim.diagnostic.open_float({ focusable = true })
+  if winid then
+    vim.schedule(function()
+      if vim.api.nvim_win_is_valid(winid) then
+        vim.api.nvim_set_current_win(winid)
+      end
+    end)
   end
 end, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
